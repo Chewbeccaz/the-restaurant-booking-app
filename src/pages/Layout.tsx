@@ -8,9 +8,7 @@ export const Layout = () => {
         <Navigation />
       </header>
       <main>
-        <h1>
-          <Outlet />
-        </h1>
+        <Outlet />
       </main>
       <footer> Social media stuff</footer>
     </>

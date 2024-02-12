@@ -4,6 +4,7 @@ import { Booking } from "./pages/Booking";
 import { Contact } from "./pages/Contact";
 import { Layout } from "./pages/Layout";
 import { NotFound } from "./pages/NotFound";
+import { Admin } from "./pages/Admin";
 
 export const Router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ export const Router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+        errorElement: <NotFound />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
         errorElement: <NotFound />,
       },
     ],
