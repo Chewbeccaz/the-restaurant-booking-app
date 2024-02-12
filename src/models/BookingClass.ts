@@ -1,9 +1,9 @@
 export class BookingClass {
   constructor(
-    public resturantID: string,
+    public restaurantId: string,
     public date: string,
     public time: string,
-    public numberOfGuest: number,
+    public numberOfGuests: number,
     public customer: {
       name: string;
       lastname: string;
