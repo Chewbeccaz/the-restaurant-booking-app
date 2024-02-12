@@ -1,3 +1,4 @@
+import { BookingForm } from "../components/BookingForm";
 import { BookingClass } from "../models/BookingClass";
 
 export const Booking = () => {
@@ -40,7 +41,10 @@ export const Booking = () => {
     ),
   ];
 
-  return <h1>Booking</h1>;
+  return (<>
+  <h1>Booking</h1>
+  <BookingForm></BookingForm>
+  </>);
 
   //Här ska det finnas: < Formulär />
 };
