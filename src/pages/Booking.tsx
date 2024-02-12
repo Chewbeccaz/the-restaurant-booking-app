@@ -2,6 +2,8 @@ import { BookingForm } from "../components/BookingForm";
 import { BookingClass } from "../models/BookingClass";
 
 export const Booking = () => {
+  const resturantId = import.meta.env.VITE_RESTURANTID;  
+
   const hardCodedBooking = [
     new BookingClass(
       import.meta.env.VITE_RESTURANTID,
