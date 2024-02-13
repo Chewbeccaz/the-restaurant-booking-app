@@ -5,7 +5,7 @@ export const Home = () => {
   return <h1>Home</h1>;
 };
 
-export const resturantId = "65c937170082009f7aa42577";
+// export const resturantId = "65c937170082009f7aa42577";
 
 //   const fetchData = async () => {
 // const response = await axios.get(
