@@ -2,7 +2,6 @@ import { ContactClass } from "../models/ContactClass";
 import axios from "axios";
 import { restaurantID } from "../main";
 import { useState } from "react";
-import "../Style/contact.scss";
 
 export const Contact = () => {
   const [contact, setContact] = useState<ContactClass>();
