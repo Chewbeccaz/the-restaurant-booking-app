@@ -1,0 +1,14 @@
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.bookings-table th,
+.bookings-table td {
+  border: 1px solid black;
+  padding: 16px;
+}

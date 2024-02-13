@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { BookingClass } from "../models/BookingClass";
 import axios from "axios";
+import { Booking } from "../models/Booking";
 
 //Rensa och lägg in anropen i Services sedan.
 
 export const Admin = () => {
-  const [bookings, setBookings] = useState<BookingClass[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
 
   const fetchBooking = async () => {
     try {
@@ -29,22 +29,36 @@ export const Admin = () => {
       <h1>You're in admin.</h1>
       <h3>Please sign in.</h3>
       <h4>Here are the bookings:</h4>
-      <ul>
-        {bookings.map((booking) => (
-          <li key={booking.id}>
-            <div>
-              <p>Booking ID: {booking.id}</p>
-              <p>Datum: {booking.date}</p>
-              <p>Tid: {booking.time}</p>
-              <p>Antal personer: {booking.numberOfGuests}</p>
-              <p>Customer: {booking.customer.name}</p>
-              <p>Customer: {booking.customer.lastname}</p>
-              <p>Customer: {booking.customer.email}</p>
-              <p>Customer: {booking.customer.phone}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <table className="bookings-table">
+        <thead>
+          <tr>
+            <th>BokningsID</th>
+            <th>Datum</th>
+            <th>Tid</th>
+            <th>Antal gäster</th>
+            <th>Kund</th>
+            <th>Ändra</th>
+            <th>Radera</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookings.map((booking) => (
+            <tr key={booking._id}>
+              <td>{booking._id}</td>
+              <td>{booking.date}</td>
+              <td>{booking.time}</td>
+              <td>{booking.numberOfGuests}</td>
+              <td>{booking.customerId}</td>
+              <td>
+                <button>Ändra</button>
+              </td>
+              <td>
+                <button>Radera</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };

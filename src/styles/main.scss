@@ -1,11 +1,4 @@
 @use "./contact";
 @use "./layout";
-
-// @use "../styles/_layout.scss";
-
-// #root {
-//   max-width: 1280px;
-//   margin: 0 auto;
-//   padding: 2rem;
-//   text-align: center;
-// }
+@use "./navigation";
+@use "./admin";
