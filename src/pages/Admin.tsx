@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { BookingClass } from "../models/BookingClass";
 import axios from "axios";
+import { FetchingBookings } from "../models/FetchingBookings";
 
 //Rensa och lägg in anropen i Services sedan.
 
 export const Admin = () => {
-  const [bookings, setBookings] = useState<BookingClass[]>([]);
+  const [bookings, setBookings] = useState<FetchingBookings[]>([]);
 
   const fetchBooking = async () => {
     try {
@@ -31,16 +31,13 @@ export const Admin = () => {
       <h4>Here are the bookings:</h4>
       <ul>
         {bookings.map((booking) => (
-          <li key={booking.id}>
+          <li key={booking._id}>
             <div>
-              <p>Booking ID: {booking.id}</p>
+              <p>Booking ID: {booking._id}</p>
               <p>Datum: {booking.date}</p>
               <p>Tid: {booking.time}</p>
               <p>Antal personer: {booking.numberOfGuests}</p>
-              <p>Customer: {booking.customer.name}</p>
-              <p>Customer: {booking.customer.lastname}</p>
-              <p>Customer: {booking.customer.email}</p>
-              <p>Customer: {booking.customer.phone}</p>
+              <p>Customer: {booking.customerId}</p>
             </div>
           </li>
         ))}
