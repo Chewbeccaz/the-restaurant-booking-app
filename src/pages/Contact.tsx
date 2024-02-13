@@ -1,8 +1,7 @@
 import { ContactClass } from "../models/ContactClass";
 import axios from "axios";
-import { resturantId } from "./Home";
+import { restaurantID } from "../main";
 import { useState } from "react";
-import "../Style/contact.scss";
 
 export const Contact = () => {
   const [contact, setContact] = useState<ContactClass>();
@@ -11,7 +10,7 @@ export const Contact = () => {
     axios
       .get<ContactClass[]>(
         "https://school-restaurant-api.azurewebsites.net/restaurant/" +
-          resturantId
+          restaurantID
       )
       .then((response) => {
         setContact(response.data[0]);
@@ -23,8 +22,11 @@ export const Contact = () => {
         <p className="name">{contact?.name}</p>
         <p className="address">
           {contact?.address}
-        <p className="address">  {contact?.zip}
-          {contact?.city}</p>
+          <p className="address">
+            {" "}
+            {contact?.zip}
+            {contact?.city}
+          </p>
         </p>
       </div>
     </>

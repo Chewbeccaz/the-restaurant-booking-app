@@ -1,9 +1,10 @@
 import { BookingForm } from "../components/BookingForm";
 import axios from "axios";
 import { BookingClass } from "../models/BookingClass";
+import { restaurantID } from "../main";
 
 export const Booking = () => {
-  const restaurantID = import.meta.env.VITE_RESTURANTID;
+  // const restaurantID = import.meta.env.VITE_RESTURANTID;
 
   const hardCodedBooking = new BookingClass(
     restaurantID,
