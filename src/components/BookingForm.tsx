@@ -68,23 +68,35 @@ export const BookingForm = () => {
   //   },
   // };
 
-  const bookingObject = {
-    restaurantId: restaurantID,
-    date: date,
-    time: time,
-    numberOfGuests: persons,
-    "customer": {
-      name: firstName,
-      lastname: lastName,
-      email: mail,
-      phone: phoneNumber,
-    },
-  };
+  // const bookingObject = {
+  //   restaurantId: restaurantID,
+  //   date: date,
+  //   time: time,
+  //   numberOfGuests: persons,
+  //   "customer": {
+  //     name: firstName,
+  //     lastname: lastName,
+  //     email: mail,
+  //     phone: phoneNumber,
+  //   },
+  // };
 
 
   const handleBooking = async () => {
     try {
-      const response = await axios.post("https://school-restaurant-api.azurewebsites.net/booking/create", bookingObject);
+      const response = await axios.post("https://school-restaurant-api.azurewebsites.net/booking/create",
+      {
+      restaurantID,
+      date,
+      time,
+      persons,
+      customer: {
+      name: firstName,
+      lastname: lastName,
+      email: mail,
+      phone: phoneNumber,
+      }
+      });
       console.log("funkar", response);
     } catch (error) {
       console.log("funkar inte", error);
