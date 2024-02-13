@@ -29,22 +29,22 @@ export const Admin = () => {
       <h1>You're in admin.</h1>
       <h3>Please sign in.</h3>
       <h4>Here are the bookings:</h4>
-      {/* <ul>
-            {bookings.map((booking => (
-                <li key={booking.id}>
-                    <div>
-                        <p>Booking ID: {booking.id}</p>
-                        <p>Datum: {booking.date}</p>
-                        <p>Tid: {booking.time}</p>
-                        <p>Antal personer: {booking.numberOfGuest}</p>
-                        <p>Customer: {booking.customer.name}</p>
-                        <p>Customer: {booking.customer.lastname}</p>
-                        <p>Customer: {booking.customer.email}</p>
-                        <p>Customer: {booking.customer.phone}</p>
-                    </div>
-                </li>
-            )))}
-        </ul> */}
+      <ul>
+        {bookings.map((booking) => (
+          <li key={booking.id}>
+            <div>
+              <p>Booking ID: {booking.id}</p>
+              <p>Datum: {booking.date}</p>
+              <p>Tid: {booking.time}</p>
+              <p>Antal personer: {booking.numberOfGuests}</p>
+              <p>Customer: {booking.customer.name}</p>
+              <p>Customer: {booking.customer.lastname}</p>
+              <p>Customer: {booking.customer.email}</p>
+              <p>Customer: {booking.customer.phone}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </>
   );
 };
