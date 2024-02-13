@@ -4,7 +4,8 @@ import { restaurantID } from "../main";
 
 export const BookingForm = () => {
 
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [mail, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [date, setDate] = useState("");
@@ -17,8 +18,12 @@ export const BookingForm = () => {
   };
 
   //ej ha kvar dessa?
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+  const handleFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLastName(e.target.value);
   };
 
   const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,35 +55,36 @@ export const BookingForm = () => {
   };
 
 
+  // const bookingObject = {
+  //   restaurantID,
+  //   date,
+  //   time,
+  //   persons,
+  //   "customer": {
+  //     name: firstName,
+  //     lastname: lastName,
+  //     email: mail,
+  //     phone: phoneNumber,
+  //   },
+  // };
+
   const bookingObject = {
-    restaurantID: restaurantID,
+    restaurantId: restaurantID,
     date: date,
     time: time,
     numberOfGuests: persons,
-    customer: {
-      name: name,
+    "customer": {
+      name: firstName,
+      lastname: lastName,
       email: mail,
       phone: phoneNumber,
     },
   };
 
 
-
-  //hur objektet ser ut i booking/create
-  //restaurantID,
-  // "2024-02-12",
-  // "18:00",
-  // 6,
-  // {
-  //   name: "Rebecca",
-  //   lastname: "Hansson",
-  //   email: "rebecca@hej.se",
-  //   phone: "123456789",
-  // }
-
   const handleBooking = async () => {
     try {
-      const response = await axios.post("https://school-restaurant-api.azurewebsites.net/booking/create/", bookingObject);
+      const response = await axios.post("https://school-restaurant-api.azurewebsites.net/booking/create", bookingObject);
       console.log("funkar", response);
     } catch (error) {
       console.log("funkar inte", error);
@@ -93,7 +99,8 @@ export const BookingForm = () => {
     <>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Namn:</label>
-        <input id="name" type="text" value={name} onChange={handleName}/>
+        <input id="name" type="text" value={firstName} onChange={handleFirstName}/>
+        <input id="lastName" type="text" value={lastName} onChange={handleLastName}/>
 
         <label htmlFor="mail">Mail:</label>
         <input id="mail" type="text" value={mail} onChange={handleMail}/>
