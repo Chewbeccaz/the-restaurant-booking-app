@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { FetchingBookings } from "../models/FetchingBookings";
+import { Booking } from "../models/Booking";
 
 //Rensa och lägg in anropen i Services sedan.
 
 export const Admin = () => {
-  const [bookings, setBookings] = useState<FetchingBookings[]>([]);
+  const [bookings, setBookings] = useState<Booking[]>([]);
 
   const fetchBooking = async () => {
     try {
