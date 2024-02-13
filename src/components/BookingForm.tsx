@@ -20,10 +20,15 @@ export const BookingForm = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Namn:</label>
         <input type="text" placeholder="Förnamn" />
         <input type="text" placeholder="Efternamn" />
-        <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Telefonnummer" />
+
+        <label htmlFor="mail">Email:</label>
+        <input type="text"/>
+
+        <label htmlFor="phoneNumber">Telefonnummer:</label>
+        <input type="text"/>
         <button>Boka</button>
 
         <label htmlFor="personQuantity">Antal personer</label>
@@ -35,6 +40,13 @@ export const BookingForm = () => {
           ))}
         </select>
 
+
+      
+        <label htmlFor="chooseDate">Välj datum:</label>
+        <input type="date" id="chooseDate" name="chooseDate" />
+      
+
+
         <label htmlFor="GDPR" style={{ textDecoration: isChecked ? 'line-through' : 'none' }}>
             <input type="checkbox" checked={isChecked} onChange={handleCheckbox} />
             <span>Jag godkänner användarvillkoren</span>
@@ -43,3 +55,6 @@ export const BookingForm = () => {
     </>
   );
 };
+
+
+// react date picker ist för input?
