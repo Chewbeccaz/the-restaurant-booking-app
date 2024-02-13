@@ -7,16 +7,8 @@ export const BookingForm = () => {
 
   const [persons, setPersons] = useState(1);
 
-  //funktion för mer natal personer
-  //   for (let i = 2; i <= 90; i++) {
-  //     let option = document.createElement("option");
-  //     option.value = i.toString();
-  //     option.text = i.toString() + " Personer";
-  //     document.querySelector("select")?.appendChild(option);
-  //   }
-
   const handlePersons = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPersons(parseInt(e.target.value));
+    setPersons(Number(e.target.value));
   };
 
   return (
@@ -28,8 +20,8 @@ export const BookingForm = () => {
         <input type="text" placeholder="Telefonnummer" />
         <button>Boka</button>
 
-        <label htmlFor="AntalPersoner">Antal personer</label>
-        <select value={persons} onChange={handlePersons}>
+        <label htmlFor="personQuantity">Antal personer</label>
+        <select id="personQuantity" value={persons} onChange={handlePersons}>
           {Array.from({ length: 90 }, (_, i) => i + 1).map((i) => (
             <option key={i} value={i}>
               {i}
@@ -37,8 +29,10 @@ export const BookingForm = () => {
           ))}
         </select>
 
-        <input type="checkbox" />
-        <span>Jag godkänner användarvillkoren</span>
+        <label htmlFor="GDPR">
+            <input type="checkbox" />
+            <span>Jag godkänner användarvillkoren</span>
+        </label>
       </form>
     </>
   );
