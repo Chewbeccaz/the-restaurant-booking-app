@@ -1,7 +1,9 @@
+import { BookingForm } from "../components/BookingForm";
 import axios from "axios";
 import { BookingClass } from "../models/BookingClass";
 
 export const Booking = () => {
+
   const hardCodedBooking = new BookingClass(
     import.meta.env.VITE_RESTURANTID,
     "2024-02-12",
@@ -40,6 +42,54 @@ export const Booking = () => {
   //     phone: "123456789",
   //   }
   // ),
+
+  const restaurantID = import.meta.env.VITE_RESTURANTID;  
+
+  const hardCodedBooking = [
+    new BookingClass(
+      // import.meta.env.VITE_RESTURANTID,
+      "65c937170082009f7aa42577",
+      "2024-02-12",
+      "18:00",
+      6,
+      {
+        name: "Rebecca",
+        lastname: "Hansson",
+        email: "rebecca@hej.se",
+        phone: "123456789",
+      }
+    ),
+    new BookingClass(
+      // import.meta.env.VITE_RESTURANTID,
+      "65c937170082009f7aa42577",
+      "2024-02-12",
+      "21:00",
+      6,
+      {
+        name: "Sanna",
+        lastname: "Siljebäck",
+        email: "Sanna@hej.se",
+        phone: "123456789",
+      }
+    ),
+    new BookingClass(
+      // import.meta.env.VITE_RESTURANTID,
+      "65c937170082009f7aa42577",
+      "2024-02-12",
+      "18:00",
+      6,
+      {
+        name: "Jennifer",
+        lastname: "Logrell",
+        email: "Jennifer@hej.se",
+        phone: "123456789",
+      }
+    ),
+  ];
+
+
+
+
   const handleCreateBooking = async () => {
     try {
       const response = await axios.post(
@@ -56,7 +106,14 @@ export const Booking = () => {
     <>
       <h1>Booking</h1>
       {/* tillfällig knapp för att se så man kan hämta bokningarna i admin.  */}
+
       <button onClick={handleCreateBooking}>Skapa tillfällig bokning</button>
+
+      <button onClick={handleCreateBooking}>
+        Skapa 3 tillfälliga bokningar
+      </button>
+       <BookingForm></BookingForm>
+
     </>
   );
 
