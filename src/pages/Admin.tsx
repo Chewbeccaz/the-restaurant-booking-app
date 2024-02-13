@@ -29,7 +29,7 @@ export const Admin = () => {
       <h1>You're in admin.</h1>
       <h3>Please sign in.</h3>
       <h4>Here are the bookings:</h4>
-      <table>
+      <table className="bookings-table">
         <thead>
           <tr>
             <th>BokningsID</th>
