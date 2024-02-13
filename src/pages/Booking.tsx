@@ -1,7 +1,10 @@
+import { BookingForm } from "../components/BookingForm";
 import axios from "axios";
 import { BookingClass } from "../models/BookingClass";
 
 export const Booking = () => {
+  const restaurantID = import.meta.env.VITE_RESTURANTID;  
+
   const hardCodedBooking = [
     new BookingClass(
       // import.meta.env.VITE_RESTURANTID,
@@ -44,6 +47,8 @@ export const Booking = () => {
     ),
   ];
 
+
+
   const handleCreateBooking = async () => {
     for (const booking of hardCodedBooking) {
       const response = await axios.post(
@@ -61,6 +66,7 @@ export const Booking = () => {
       <button onClick={handleCreateBooking}>
         Skapa 3 tillfälliga bokningar
       </button>
+       <BookingForm></BookingForm>
     </>
   );
 
