@@ -29,19 +29,36 @@ export const Admin = () => {
       <h1>You're in admin.</h1>
       <h3>Please sign in.</h3>
       <h4>Here are the bookings:</h4>
-      <ul>
-        {bookings.map((booking) => (
-          <li key={booking._id}>
-            <div>
-              <p>Booking ID: {booking._id}</p>
-              <p>Datum: {booking.date}</p>
-              <p>Tid: {booking.time}</p>
-              <p>Antal personer: {booking.numberOfGuests}</p>
-              <p>Customer: {booking.customerId}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>BokningsID</th>
+            <th>Datum</th>
+            <th>Tid</th>
+            <th>Antal gäster</th>
+            <th>Kund</th>
+            <th>Ändra</th>
+            <th>Radera</th>
+          </tr>
+        </thead>
+        <tbody>
+          {bookings.map((booking) => (
+            <tr key={booking._id}>
+              <td>{booking._id}</td>
+              <td>{booking.date}</td>
+              <td>{booking.time}</td>
+              <td>{booking.numberOfGuests}</td>
+              <td>{booking.customerId}</td>
+              <td>
+                <button>Ändra</button>
+              </td>
+              <td>
+                <button>Radera</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </>
   );
 };
