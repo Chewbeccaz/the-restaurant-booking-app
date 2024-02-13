@@ -11,6 +11,12 @@ export const BookingForm = () => {
     setPersons(Number(e.target.value));
   };
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckbox = () => {
+    setIsChecked(!isChecked);
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -29,8 +35,8 @@ export const BookingForm = () => {
           ))}
         </select>
 
-        <label htmlFor="GDPR">
-            <input type="checkbox" />
+        <label htmlFor="GDPR" style={{ textDecoration: isChecked ? 'line-through' : 'none' }}>
+            <input type="checkbox" checked={isChecked} onChange={handleCheckbox} />
             <span>Jag godkänner användarvillkoren</span>
         </label>
       </form>
