@@ -2,6 +2,7 @@ import { ContactClass } from "../models/ContactClass";
 import axios from "axios";
 import { restaurantID } from "../main";
 import { useState } from "react";
+import { ContactForm } from "../components/ContactForm";
 
 export const Contact = () => {
   const [contact, setContact] = useState<ContactClass>();
@@ -23,29 +24,13 @@ export const Contact = () => {
         <p className="address">
           {contact?.address}
           <p className="address">
-            {" "}
             {contact?.zip}
             {contact?.city}
           </p>
         </p>
       </div>
+      <ContactForm />
     </>
   );
 };
 
-/*  return (
-    <>
-      <h4>Kontakta oss</h4>
-      <div>
-        <p>
-
-        </p>
-      </div>
-      <div>
-        <input type="text" placeholder="Namn"/>
-        <input type="text" placeholder="Mailadress"/>
-        <input type="text" placeholder="Skriv din fråga här"/>
-      </div>
-    </>
-  );
-; */
