@@ -49,44 +49,11 @@ export const BookingForm = () => {
         case "personQuantity":
           setPersons(Number(value));
           break;
-
         default:
           break;
       }
     }
   };
-
-  // const handleSubmit = (e: FormEvent) => {
-  //   e.preventDefault();
-  // };
-
-  // const handleFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFirstName(e.target.value);
-  // };
-
-  // const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setLastName(e.target.value);
-  // };
-
-  // const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setEmail(e.target.value);
-  // };
-
-  // const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setPhoneNumber(e.target.value);
-  // };
-
-  // const handlePersons = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setPersons(Number(e.target.value));
-  // };
-
-  // const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setDate(e.target.value);
-  // };
-
-  // const handleTime = (e: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setTime(e.target.value);
-  // };
 
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
@@ -121,22 +88,20 @@ export const BookingForm = () => {
     <>
       <form onSubmit={handleForm}>
         <label htmlFor="name">Namn:</label>
-        <input id="name" type="text" value={firstName} onChange={handleForm} />
+        <input id="name" type="text" onChange={handleForm} />
         <input
           id="lastName"
           type="text"
-          value={lastName}
           onChange={handleForm}
         />
 
         <label htmlFor="mail">Mail:</label>
-        <input id="mail" type="text" value={mail} onChange={handleForm} />
+        <input id="mail" type="text" onChange={handleForm} />
 
         <label htmlFor="phoneNumber">Telefonnummer:</label>
         <input
           id="phoneNumber"
           type="text"
-          value={phoneNumber}
           onChange={handleForm}
         />
 
@@ -154,12 +119,11 @@ export const BookingForm = () => {
           id="chooseDate"
           type="date"
           name="chooseDate"
-          value={date}
           onChange={handleForm}
         />
 
         <label htmlFor="chooseTime">Välj tid:</label>
-        <select id="chooseTime" value={time} onChange={handleForm}>
+        <select id="chooseTime" name="chooseTime" onChange={handleForm}>
           <option value="">Tider</option>
           <option value="18:00">18:00</option>
           <option value="21:00">21:00</option>
@@ -184,9 +148,9 @@ export const BookingForm = () => {
   );
 };
 
-// react date picker ist för input?
+// react date picker ist för input??
+
 // utgråade tider om full?
 //error meddelande? till användren?
-// stor funktion för e target grejerna
 //validering för input med tex bara nummer osv
 // tömma inputs efter
