@@ -5,6 +5,7 @@ import { Contact } from "./pages/Contact";
 import { Layout } from "./pages/Layout";
 import { NotFound } from "./pages/NotFound";
 import { Admin } from "./pages/Admin";
+import { Menu } from "./pages/Menu";
 
 export const Router = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ export const Router = createBrowserRouter([
         element: <Admin />,
         errorElement: <NotFound />,
       },
+      {
+        path: "/menu",
+        element: <Menu />,
+        errorElement: <NotFound />,
+      }
     ],
   },
 ]);
