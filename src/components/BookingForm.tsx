@@ -1,6 +1,7 @@
 import axios from "axios";
 import { FormEvent, useState } from "react";
 import { restaurantID } from "../main";
+import { CreateBooking } from "../models/CreateBooking";
 
 export const BookingForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -12,99 +13,135 @@ export const BookingForm = () => {
   const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleForm = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
+
+    if (
+      e.target instanceof HTMLInputElement ||
+      e.target instanceof HTMLSelectElement
+    ) {
+      const { name, value } = e.target;
+
+      switch (name) {
+        case "firstName":
+          setFirstName(value);
+          break;
+        case "lastName":
+          setLastName(value);
+          break;
+        case "mail":
+          setEmail(value);
+          break;
+        case "phoneNumber":
+          setPhoneNumber(value);
+          break;
+        case "chooseDate":
+          setDate(value);
+          break;
+        case "chooseTime":
+          setTime(value);
+          break;
+        case "personQuantity":
+          setPersons(Number(value));
+          break;
+
+        default:
+          break;
+      }
+    }
   };
 
-  //ej ha kvar dessa?
-  const handleFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(e.target.value);
-  };
+  // const handleSubmit = (e: FormEvent) => {
+  //   e.preventDefault();
+  // };
 
-  const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(e.target.value);
-  };
+  // const handleFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFirstName(e.target.value);
+  // };
 
-  const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
+  // const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setLastName(e.target.value);
+  // };
 
-  const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value);
-  };
+  // const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setEmail(e.target.value);
+  // };
 
-  //ha kvar denna
-  const handlePersons = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPersons(Number(e.target.value));
-  };
+  // const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPhoneNumber(e.target.value);
+  // };
 
-  //inte dessa
-  const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
-  };
+  // const handlePersons = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setPersons(Number(e.target.value));
+  // };
 
-  const handleTime = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTime(e.target.value);
-  };
+  // const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDate(e.target.value);
+  // };
 
-  //men denna
+  // const handleTime = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setTime(e.target.value);
+  // };
+
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
   };
 
   const handleBooking = async () => {
     try {
+      const createBooking: CreateBooking = {
+        restaurantId: restaurantID,
+        date: date,
+        time: time,
+        numberOfGuests: persons,
+        customer: {
+          name: firstName,
+          lastname: lastName,
+          email: mail,
+          phone: phoneNumber,
+        },
+      };
+
       const response = await axios.post(
         "https://school-restaurant-api.azurewebsites.net/booking/create",
-        {
-          restaurantId: restaurantID,
-          date: date,
-          time: time,
-          numberOfGuests: persons,
-          customer: {
-            name: firstName,
-            lastname: lastName,
-            email: mail,
-            phone: phoneNumber,
-          },
-        }
+        createBooking
       );
-      console.log("funkar", response);
+      console.log("Funkar", response.data);
     } catch (error) {
-      console.log("funkar inte", error);
+      console.log("Funkar inte", error);
     }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleForm}>
         <label htmlFor="name">Namn:</label>
-        <input
-          id="name"
-          type="text"
-          value={firstName}
-          onChange={handleFirstName}
-        />
+        <input id="name" type="text" value={firstName} onChange={handleForm} />
         <input
           id="lastName"
           type="text"
           value={lastName}
-          onChange={handleLastName}
+          onChange={handleForm}
         />
 
         <label htmlFor="mail">Mail:</label>
-        <input id="mail" type="text" value={mail} onChange={handleMail} />
+        <input id="mail" type="text" value={mail} onChange={handleForm} />
 
         <label htmlFor="phoneNumber">Telefonnummer:</label>
         <input
           id="phoneNumber"
           type="text"
           value={phoneNumber}
-          onChange={handlePhoneNumber}
+          onChange={handleForm}
         />
 
         <label htmlFor="personQuantity">Antal personer</label>
-        <select id="personQuantity" onChange={handlePersons}>
+        <select id="personQuantity" onChange={handleForm}>
           {Array.from({ length: 90 }, (_, i) => i + 1).map((i) => (
             <option key={i} value={i}>
               {i}
@@ -118,11 +155,11 @@ export const BookingForm = () => {
           type="date"
           name="chooseDate"
           value={date}
-          onChange={handleDate}
+          onChange={handleForm}
         />
 
         <label htmlFor="chooseTime">Välj tid:</label>
-        <select id="chooseTime" value={time} onChange={handleTime}>
+        <select id="chooseTime" value={time} onChange={handleForm}>
           <option value="">Tider</option>
           <option value="18:00">18:00</option>
           <option value="21:00">21:00</option>
@@ -148,3 +185,8 @@ export const BookingForm = () => {
 };
 
 // react date picker ist för input?
+// utgråade tider om full?
+//error meddelande? till användren?
+// stor funktion för e target grejerna
+//validering för input med tex bara nummer osv
+// tömma inputs efter
