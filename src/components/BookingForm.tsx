@@ -3,7 +3,6 @@ import { FormEvent, useState } from "react";
 import { restaurantID } from "../main";
 
 export const BookingForm = () => {
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [mail, setEmail] = useState("");
@@ -48,78 +47,61 @@ export const BookingForm = () => {
     setTime(e.target.value);
   };
 
-
- //men denna
+  //men denna
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
   };
 
-
-  // const bookingObject = {
-  //   restaurantID,
-  //   date,
-  //   time,
-  //   persons,
-  //   "customer": {
-  //     name: firstName,
-  //     lastname: lastName,
-  //     email: mail,
-  //     phone: phoneNumber,
-  //   },
-  // };
-
-  // const bookingObject = {
-  //   restaurantId: restaurantID,
-  //   date: date,
-  //   time: time,
-  //   numberOfGuests: persons,
-  //   "customer": {
-  //     name: firstName,
-  //     lastname: lastName,
-  //     email: mail,
-  //     phone: phoneNumber,
-  //   },
-  // };
-
-
   const handleBooking = async () => {
     try {
-      const response = await axios.post("https://school-restaurant-api.azurewebsites.net/booking/create",
-      {
-      restaurantID,
-      date,
-      time,
-      persons,
-      customer: {
-      name: firstName,
-      lastname: lastName,
-      email: mail,
-      phone: phoneNumber,
-      }
-      });
+      const response = await axios.post(
+        "https://school-restaurant-api.azurewebsites.net/booking/create",
+        {
+          restaurantId: restaurantID,
+          date: date,
+          time: time,
+          numberOfGuests: persons,
+          customer: {
+            name: firstName,
+            lastname: lastName,
+            email: mail,
+            phone: phoneNumber,
+          },
+        }
+      );
       console.log("funkar", response);
     } catch (error) {
       console.log("funkar inte", error);
-    };
-
+    }
   };
-
-
-
 
   return (
     <>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Namn:</label>
-        <input id="name" type="text" value={firstName} onChange={handleFirstName}/>
-        <input id="lastName" type="text" value={lastName} onChange={handleLastName}/>
+        <input
+          id="name"
+          type="text"
+          value={firstName}
+          onChange={handleFirstName}
+        />
+        <input
+          id="lastName"
+          type="text"
+          value={lastName}
+          onChange={handleLastName}
+        />
 
         <label htmlFor="mail">Mail:</label>
-        <input id="mail" type="text" value={mail} onChange={handleMail}/>
+        <input id="mail" type="text" value={mail} onChange={handleMail} />
 
         <label htmlFor="phoneNumber">Telefonnummer:</label>
-        <input id="phoneNumber" type="text" value={phoneNumber} onChange={handlePhoneNumber}/>
-        
+        <input
+          id="phoneNumber"
+          type="text"
+          value={phoneNumber}
+          onChange={handlePhoneNumber}
+        />
 
         <label htmlFor="personQuantity">Antal personer</label>
         <select id="personQuantity" onChange={handlePersons}>
@@ -130,22 +112,33 @@ export const BookingForm = () => {
           ))}
         </select>
 
-      
         <label htmlFor="chooseDate">Välj datum:</label>
-        <input id="chooseDate" type="date" name="chooseDate" value={date} onChange={handleDate}/>
-      
+        <input
+          id="chooseDate"
+          type="date"
+          name="chooseDate"
+          value={date}
+          onChange={handleDate}
+        />
+
         <label htmlFor="chooseTime">Välj tid:</label>
         <select id="chooseTime" value={time} onChange={handleTime}>
           <option value="">Tider</option>
           <option value="18:00">18:00</option>
           <option value="21:00">21:00</option>
         </select>
-      
 
-
-        <label htmlFor="GDPR" style={{ textDecoration: isChecked ? 'line-through' : 'none' }}>
-            <input id="GDPR" type="checkbox" checked={isChecked} onChange={handleCheckbox} />
-            <span>Jag godkänner användarvillkoren</span>
+        <label
+          htmlFor="GDPR"
+          style={{ textDecoration: isChecked ? "line-through" : "none" }}
+        >
+          <input
+            id="GDPR"
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleCheckbox}
+          />
+          <span>Jag godkänner användarvillkoren</span>
         </label>
 
         <button onClick={handleBooking}>Boka</button>
@@ -153,6 +146,5 @@ export const BookingForm = () => {
     </>
   );
 };
-
 
 // react date picker ist för input?
