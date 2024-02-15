@@ -1,62 +1,92 @@
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import { restaurantID } from "../main";
+import { CreateBooking } from "../models/CreateBooking";
 
 export const BookingForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [mail, setEmail] = useState("");
+  const [mail, setMail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
+  const [formValidation, setFormValidation] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const [errorValidation, setErrorValidation] = useState(false);
+
+  useEffect(() => {
+    const isValid =
+      firstName.trim() !== "" &&
+      lastName.trim() !== "" &&
+      mail.trim() !== "" &&
+      phoneNumber.trim() !== "" &&
+      date !== "" &&
+      time !== "" &&
+      isChecked;
+
+    setFormValidation(isValid);
+  }, [firstName, lastName, mail, phoneNumber, date, time, isChecked]);
+
+  const handleForm = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
+
+    if (
+      e.target instanceof HTMLInputElement ||
+      e.target instanceof HTMLSelectElement
+    ) {
+      const { name, value } = e.target;
+
+      switch (name) {
+        case "firstName":
+          setFirstName(value);
+          break;
+        case "lastName":
+          setLastName(value);
+          break;
+        case "mail":
+          setMail(value);
+          break;
+        case "phoneNumber":
+          setPhoneNumber(value);
+          break;
+        case "chooseDate":
+          setDate(value);
+          break;
+        case "chooseTime":
+          setTime(value);
+          break;
+        case "personQuantity":
+          setPersons(Number(value));
+          break;
+        default:
+          break;
+      }
+    }
   };
 
-  //ej ha kvar dessa?
-  const handleFirstName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(e.target.value);
-  };
-
-  const handleLastName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(e.target.value);
-  };
-
-  const handleMail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePhoneNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhoneNumber(e.target.value);
-  };
-
-  //ha kvar denna
-  const handlePersons = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPersons(Number(e.target.value));
-  };
-
-  //inte dessa
-  const handleDate = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
-  };
-
-  const handleTime = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setTime(e.target.value);
-  };
-
-  //men denna
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
   };
 
+  const [bookings, setBookings] = useState([]);
+
   const handleBooking = async () => {
     try {
-      const response = await axios.post(
-        "https://school-restaurant-api.azurewebsites.net/booking/create",
-        {
+      const getAllBookings = await axios.get(
+        `https://school-restaurant-api.azurewebsites.net/booking/restaurant/${
+          import.meta.env.VITE_RESTURANTID
+        }`
+      );
+
+      if (formValidation) {
+        const createBooking: CreateBooking = {
           restaurantId: restaurantID,
           date: date,
           time: time,
@@ -67,44 +97,80 @@ export const BookingForm = () => {
             email: mail,
             phone: phoneNumber,
           },
-        }
-      );
-      console.log("funkar", response);
+        };
+
+        const response = await axios.post(
+          "https://school-restaurant-api.azurewebsites.net/booking/create",
+          createBooking
+        );
+        console.log("Funkar", response.data);
+
+        setFirstName("");
+        setLastName("");
+        setMail("");
+        setPhoneNumber("");
+        setDate("");
+        setTime("");
+        setPersons(1);
+        setIsChecked(false);
+
+        setErrorValidation(false);
+      } else {
+        console.log("Formulär funkar inte");
+
+        setErrorValidation(true);
+      }
     } catch (error) {
-      console.log("funkar inte", error);
+      console.log("Funkar inte", error);
     }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Namn:</label>
+      <form onSubmit={handleForm}>
+        <label htmlFor="firstName">Förnamn:</label>
         <input
-          id="name"
+          id="firstName"
+          name="firstName"
           type="text"
           value={firstName}
-          onChange={handleFirstName}
+          onChange={handleForm}
         />
+
+        <label htmlFor="lastName">Efternamn:</label>
         <input
           id="lastName"
+          name="lastName"
           type="text"
           value={lastName}
-          onChange={handleLastName}
+          onChange={handleForm}
         />
 
         <label htmlFor="mail">Mail:</label>
-        <input id="mail" type="text" value={mail} onChange={handleMail} />
+        <input
+          id="mail"
+          name="mail"
+          type="text"
+          value={mail}
+          onChange={handleForm}
+        />
 
         <label htmlFor="phoneNumber">Telefonnummer:</label>
         <input
           id="phoneNumber"
-          type="text"
+          name="phoneNumber"
+          type="number"
           value={phoneNumber}
-          onChange={handlePhoneNumber}
+          onChange={handleForm}
         />
 
         <label htmlFor="personQuantity">Antal personer</label>
-        <select id="personQuantity" onChange={handlePersons}>
+        <select
+          id="personQuantity"
+          name="personQuantity"
+          value={persons}
+          onChange={handleForm}
+        >
           {Array.from({ length: 90 }, (_, i) => i + 1).map((i) => (
             <option key={i} value={i}>
               {i}
@@ -118,20 +184,22 @@ export const BookingForm = () => {
           type="date"
           name="chooseDate"
           value={date}
-          onChange={handleDate}
+          onChange={handleForm}
         />
 
         <label htmlFor="chooseTime">Välj tid:</label>
-        <select id="chooseTime" value={time} onChange={handleTime}>
+        <select
+          id="chooseTime"
+          name="chooseTime"
+          value={time}
+          onChange={handleForm}
+        >
           <option value="">Tider</option>
           <option value="18:00">18:00</option>
           <option value="21:00">21:00</option>
         </select>
 
-        <label
-          htmlFor="GDPR"
-          style={{ textDecoration: isChecked ? "line-through" : "none" }}
-        >
+        <label htmlFor="GDPR">
           <input
             id="GDPR"
             type="checkbox"
@@ -143,8 +211,14 @@ export const BookingForm = () => {
 
         <button onClick={handleBooking}>Boka</button>
       </form>
+
+      {errorValidation && <p>Du måste fylla i alla fält för att kunna boka</p>}
     </>
   );
 };
 
-// react date picker ist för input?
+// react date picker ist för input??
+
+// utgråade tider om full?
+
+//disabled på button om validering inte går igenom så kund ej kan trycka på knappen, eller felmeddelande om inte allt är ifyllt?
