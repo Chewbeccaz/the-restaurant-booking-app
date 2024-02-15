@@ -12,23 +12,20 @@ export const BookingForm = () => {
   const [time, setTime] = useState("");
   const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
-
-
   const [formValidation, setFormValidation] = useState(false);
 
   useEffect(() => {
     const isValid =
-    firstName.trim() !== "" &&
-    lastName.trim() !== "" &&
-    mail.trim() !== "" &&
-    phoneNumber.trim() !== "" &&
-    date !== "" &&
-    time !== "" &&
-    isChecked;
+      firstName.trim() !== "" &&
+      lastName.trim() !== "" &&
+      mail.trim() !== "" &&
+      phoneNumber.trim() !== "" &&
+      date !== "" &&
+      time !== "" &&
+      isChecked;
 
     setFormValidation(isValid);
   }, [firstName, lastName, mail, phoneNumber, date, time, isChecked]);
-
 
   const handleForm = (
     e:
@@ -70,18 +67,10 @@ export const BookingForm = () => {
           break;
       }
     }
-
-
-   
   };
-
-
-
-
 
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
-
 
     //för att få disabled att funka
     // const isValid =
@@ -93,95 +82,100 @@ export const BookingForm = () => {
     // time !== "" &&
 
     // setFormValidation(isValid);
-
   };
-
 
   const [bookings, setBookings] = useState([]);
 
-
   const handleBooking = async () => {
-
     try {
-
-
-      const getAllBookings = await axios.get(`https://school-restaurant-api.azurewebsites.net/booking/restaurant/${
-        import.meta.env.VITE_RESTURANTID
-      }`
+      const getAllBookings = await axios.get(
+        `https://school-restaurant-api.azurewebsites.net/booking/restaurant/${
+          import.meta.env.VITE_RESTURANTID
+        }`
       );
-
 
       if (formValidation) {
         const createBooking: CreateBooking = {
-        restaurantId: restaurantID,
-        date: date,
-        time: time,
-        numberOfGuests: persons,
-        customer: {
-          name: firstName,
-          lastname: lastName,
-          email: mail,
-          phone: phoneNumber,
-        },
+          restaurantId: restaurantID,
+          date: date,
+          time: time,
+          numberOfGuests: persons,
+          customer: {
+            name: firstName,
+            lastname: lastName,
+            email: mail,
+            phone: phoneNumber,
+          },
+        };
 
-      }
+        const response = await axios.post(
+          "https://school-restaurant-api.azurewebsites.net/booking/create",
+          createBooking
+        );
+        console.log("Funkar", response.data);
 
-      const response = await axios.post(
-        "https://school-restaurant-api.azurewebsites.net/booking/create",
-        createBooking
-      );
-      console.log("Funkar", response.data);
-
-
-      setFirstName("");
-      setLastName("");
-      setMail("");
-      setPhoneNumber("");
-      setDate("");
-      setTime("");
-      setPersons(1);
-      setIsChecked(false);
-
-
-       } else {
+        setFirstName("");
+        setLastName("");
+        setMail("");
+        setPhoneNumber("");
+        setDate("");
+        setTime("");
+        setPersons(1);
+        setIsChecked(false);
+      } else {
         console.log("Formulär funkar inte");
       }
-
     } catch (error) {
       console.log("Funkar inte", error);
     }
   };
 
-
-
-
   return (
     <>
       <form onSubmit={handleForm}>
         <label htmlFor="firstName">Förnamn:</label>
-        <input id="firstName" name="firstName" type="text" onChange={handleForm} />
+        <input
+          id="firstName"
+          name="firstName"
+          type="text"
+          value={firstName}
+          onChange={handleForm}
+        />
 
         <label htmlFor="lastName">Efternamn:</label>
         <input
           id="lastName"
           name="lastName"
           type="text"
+          value={lastName}
           onChange={handleForm}
         />
 
         <label htmlFor="mail">Mail:</label>
-        <input id="mail" name="mail" type="text" onChange={handleForm} />
+        <input
+          id="mail"
+          name="mail"
+          type="text"
+          value={mail}
+          onChange={handleForm}
+        />
 
         <label htmlFor="phoneNumber">Telefonnummer:</label>
         <input
           id="phoneNumber"
           name="phoneNumber"
           type="number"
+          value={phoneNumber}
           onChange={handleForm}
         />
 
         <label htmlFor="personQuantity">Antal personer</label>
-        <select id="personQuantity" onChange={handleForm}>
+        <select
+          id="personQuantity"
+          name="personQuantity"
+          value={persons}
+          onChange={handleForm}
+        >
           {Array.from({ length: 90 }, (_, i) => i + 1).map((i) => (
             <option key={i} value={i}>
               {i}
@@ -194,11 +188,17 @@ export const BookingForm = () => {
           id="chooseDate"
           type="date"
           name="chooseDate"
+          value={date}
           onChange={handleForm}
         />
 
         <label htmlFor="chooseTime">Välj tid:</label>
-        <select id="chooseTime" name="chooseTime" onChange={handleForm}>
+        <select
+          id="chooseTime"
+          name="chooseTime"
+          value={time}
+          onChange={handleForm}
+        >
           <option value="">Tider</option>
           <option value="18:00">18:00</option>
           <option value="21:00">21:00</option>
@@ -217,7 +217,9 @@ export const BookingForm = () => {
           <span>Jag godkänner användarvillkoren</span>
         </label>
 
-        <button onClick={handleBooking}>Boka</button>
+        <button disabled={!formValidation} onClick={handleBooking}>
+          Boka
+        </button>
       </form>
     </>
   );
@@ -231,4 +233,4 @@ export const BookingForm = () => {
 
 // tömma inputs efter
 
-//disabled på button om validering inte går igenom så kund ej kan trycka på knappen, plus ett felmeddelande till användaren 
+//disabled på button om validering inte går igenom så kund ej kan trycka på knappen, plus ett felmeddelande till användaren
