@@ -1,5 +1,6 @@
 interface IBookingInputs {
     label: string;
+    id: string;
     name: string;
     type: string;
     value: string;
@@ -7,12 +8,12 @@ interface IBookingInputs {
 }
 
 
-export const BookingInputs: React.FC<IBookingInputs> = ({label, name, type, value, onChange}) => {
+export const BookingInputs: React.FC<IBookingInputs> = ({label, id, name, type, value, onChange}) => {
     return (
         <>
-        <label htmlFor="name">{label}</label>
+        <label htmlFor={id}>{label}</label>
         <input
-        id={name}
+        id={id}
         name={name}
         type={type}
         value={value}

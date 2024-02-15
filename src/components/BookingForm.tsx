@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
 import { BookingFormError } from "./BookingFormError";
+import { BookingInputs } from "./BookingInputs";
 
 export const BookingForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -129,41 +130,44 @@ export const BookingForm = () => {
   return (
     <>
       <form onSubmit={handleForm}>
-        <label htmlFor="firstName">Förnamn:</label>
-        <input
-          id="firstName"
-          name="firstName"
-          type="text"
-          value={firstName}
-          onChange={handleForm}
+
+        <BookingInputs
+        label="Förnamn:"
+        id="firstName"
+        name="firstName"
+        type="text"
+        value={firstName}
+        onChange={handleForm}
         />
 
-        <label htmlFor="lastName">Efternamn:</label>
-        <input
-          id="lastName"
-          name="lastName"
-          type="text"
-          value={lastName}
-          onChange={handleForm}
+        <BookingInputs
+        label="Efternamn:"
+        id="lastName"
+        name="lastName"
+        type="text"
+        value={lastName}
+        onChange={handleForm}
         />
 
-        <label htmlFor="mail">Mail:</label>
-        <input
-          id="mail"
-          name="mail"
-          type="text"
-          value={mail}
-          onChange={handleForm}
+        <BookingInputs
+        label="Mail:"
+        id="mail"
+        name="mail"
+        type="text"
+        value={mail}
+        onChange={handleForm}
         />
 
-        <label htmlFor="phoneNumber">Telefonnummer:</label>
-        <input
-          id="phoneNumber"
-          name="phoneNumber"
-          type="number"
-          value={phoneNumber}
-          onChange={handleForm}
+        <BookingInputs
+        label="Telefonnummer:"
+        id="phoneNumber"
+        name="phoneNumber"
+        type="number"
+        value={phoneNumber}
+        onChange={handleForm}
         />
+        
+
 
         <label htmlFor="personQuantity">Antal personer</label>
         <select
@@ -179,14 +183,17 @@ export const BookingForm = () => {
           ))}
         </select>
 
-        <label htmlFor="chooseDate">Välj datum:</label>
-        <input
-          id="chooseDate"
-          type="date"
-          name="chooseDate"
-          value={date}
-          onChange={handleForm}
+
+
+        <BookingInputs
+        label="Välj datum:"
+        id="chooseDate"
+        name="chooseDate"
+        type="date"
+        value={date}
+        onChange={handleForm}
         />
+
 
         <label htmlFor="chooseTime">Välj tid:</label>
         <select
@@ -199,6 +206,7 @@ export const BookingForm = () => {
           <option value="18:00">18:00</option>
           <option value="21:00">21:00</option>
         </select>
+
 
         <label htmlFor="GDPR">
           <input
