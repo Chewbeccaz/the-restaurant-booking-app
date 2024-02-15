@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
 
@@ -15,6 +15,19 @@ export const BookingForm = () => {
 
 
   const [formValidation, setFormValidation] = useState(false);
+
+  useEffect(() => {
+    const isValid =
+    firstName.trim() !== "" &&
+    lastName.trim() !== "" &&
+    mail.trim() !== "" &&
+    phoneNumber.trim() !== "" &&
+    date !== "" &&
+    time !== "" &&
+    isChecked;
+
+    setFormValidation(isValid);
+  }, [firstName, lastName, mail, phoneNumber, date, time, isChecked]);
 
 
   const handleForm = (
@@ -59,17 +72,6 @@ export const BookingForm = () => {
     }
 
 
-  //validation för inputs
-    const isValid =
-    firstName.trim() !== "" &&
-    lastName.trim() !== "" &&
-    mail.trim() !== "" &&
-    phoneNumber.trim() !== "" &&
-    date !== "" &&
-    time !== "" &&
-    isChecked;
-
-    setFormValidation(isValid);
    
   };
 
@@ -129,9 +131,19 @@ export const BookingForm = () => {
         createBooking
       );
       console.log("Funkar", response.data);
-       }
 
-       else {
+
+      setFirstName("");
+      setLastName("");
+      setMail("");
+      setPhoneNumber("");
+      setDate("");
+      setTime("");
+      setPersons(1);
+      setIsChecked(false);
+
+
+       } else {
         console.log("Formulär funkar inte");
       }
 
@@ -164,7 +176,7 @@ export const BookingForm = () => {
         <input
           id="phoneNumber"
           name="phoneNumber"
-          type="text"
+          type="number"
           onChange={handleForm}
         />
 
