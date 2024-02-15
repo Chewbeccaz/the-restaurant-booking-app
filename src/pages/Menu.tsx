@@ -3,23 +3,23 @@ export const Menu = () => {
     const dish: Food[] = [ 
             new Food(
                 "När lammen tystnar",
-                "",
+                "Lammsnittar",
                 "Lammlever som serveras med favabönor",
-                "Chiantivin",
+                "Chianti",
                 "Passande efterrätt",
                 1991),
             new Food (
                 "Gudfadern",
-                "Vitlöksbröd",
+                "Carpaccio",
                 "Pasta i tomatsås med köttbullar",
                 "Bardolino",
                 "Cannoli",
                 1972),
             new Food(
                 "Jurassic Park",
-                "Sallad",
+                "Chilensk havsabborre",
                 "Grillad kyckling med grönsaker",
-                "Regnvatten",
+                "Perrier-Jouët Belle Époque",
                 "Green jello",
                 1993
             ),
@@ -34,19 +34,23 @@ export const Menu = () => {
     
     const foodsHtml = dish.map((food) => {
         return (
-            <><div>
-            <h3>{food.name}</h3>
+            <><section className="menu-section">
+            <h3 className="foodName">{food.name}</h3>
+
             <div className="menu">
 
             <p>Förrätt: {food.dishOne}</p>
             <p>Huvudrätt: {food.dishTwo}</p>
             <p>Rekommenderad dryck: {food.drink}</p>
             <p>Efterrätt: {food.dishThree}</p>
-            <p>Pris: {food.price} SEK</p>
+
             </div>
-            </div>
+            <p className="price">Pris: {food.price} SEK</p>
+            </section>
             </>
         );
     });
-    return <>{foodsHtml}</>
+    return <>
+    <h2>Välj något av våra filminspirerade paket:</h2>
+    {foodsHtml}</>
 };
