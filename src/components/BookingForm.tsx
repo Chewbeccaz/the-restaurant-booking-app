@@ -6,7 +6,7 @@ import { CreateBooking } from "../models/CreateBooking";
 export const BookingForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [mail, setEmail] = useState("");
+  const [mail, setMail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -14,7 +14,7 @@ export const BookingForm = () => {
   const [isChecked, setIsChecked] = useState(false);
 
 
-  // const [formValidation, setFormValidation] = useState(false);
+  const [formValidation, setFormValidation] = useState(false);
 
 
   const handleForm = (
@@ -39,7 +39,7 @@ export const BookingForm = () => {
           setLastName(value);
           break;
         case "mail":
-          setEmail(value);
+          setMail(value);
           break;
         case "phoneNumber":
           setPhoneNumber(value);
@@ -60,16 +60,16 @@ export const BookingForm = () => {
 
 
   //validation för inputs
-    // const isValid =
-    // firstName.trim() !== "" &&
-    // lastName.trim() !== "" &&
-    // mail.trim() !== "" &&
-    // phoneNumber.trim() !== "" &&
-    // date !== "" &&
-    // time !== "" &&
-    // isChecked;
+    const isValid =
+    firstName.trim() !== "" &&
+    lastName.trim() !== "" &&
+    mail.trim() !== "" &&
+    phoneNumber.trim() !== "" &&
+    date !== "" &&
+    time !== "" &&
+    isChecked;
 
-    // setFormValidation(isValid);
+    setFormValidation(isValid);
    
   };
 
@@ -81,29 +81,37 @@ export const BookingForm = () => {
     setIsChecked(!isChecked);
 
 
-    //validation för inputs när checkbox är checked
-    // const isValid =
-    //   firstName.trim() !== "" &&
-    //   lastName.trim() !== "" &&
-    //   mail.trim() !== "" &&
-    //   phoneNumber.trim() !== "" &&
-    //   date !== "" &&
-    //   time !== "" &&
-    //   sätta checked med en ! framför
+    //för att få disabled att funka
+    const isValid =
+    firstName.trim() !== "" &&
+    lastName.trim() !== "" &&
+    mail.trim() !== "" &&
+    phoneNumber.trim() !== "" &&
+    date !== "" &&
+    time !== "" &&
+    !isChecked;
+   
 
-    //   setFormValidation(isValid);
-
-    
+    setFormValidation(isValid);
   };
 
 
-  
+  const [bookings, setBookings] = useState([]);
 
 
   const handleBooking = async () => {
+
     try {
 
-      const createBooking: CreateBooking = {
+
+      const getAllBookings = await axios.get(`https://school-restaurant-api.azurewebsites.net/booking/restaurant/${
+        import.meta.env.VITE_RESTURANTID
+      }`
+      );
+
+
+      if (formValidation) {
+        const createBooking: CreateBooking = {
         restaurantId: restaurantID,
         date: date,
         time: time,
@@ -117,22 +125,16 @@ export const BookingForm = () => {
 
       }
 
-
-        const response = await axios.post(
+      const response = await axios.post(
         "https://school-restaurant-api.azurewebsites.net/booking/create",
         createBooking
       );
       console.log("Funkar", response.data);
+       }
 
-
-    //   //validering för inputs
-    //   if (formValidation) {
-        
-    //   };
-    //  //kollar om validering funkar
-    //    else {
-    //     console.log("Formulär funkar inte");
-    //   }
+       else {
+        console.log("Formulär funkar inte");
+      }
 
     } catch (error) {
       console.log("Funkar inte", error);
@@ -140,24 +142,29 @@ export const BookingForm = () => {
   };
 
 
-  
+
+
   return (
     <>
       <form onSubmit={handleForm}>
-        <label htmlFor="name">Namn:</label>
-        <input id="name" type="text" onChange={handleForm} />
+        <label htmlFor="firstName">Förnamn:</label>
+        <input id="firstName" name="firstName" type="text" onChange={handleForm} />
+
+        <label htmlFor="lastName">Efternamn:</label>
         <input
           id="lastName"
+          name="lastName"
           type="text"
           onChange={handleForm}
         />
 
         <label htmlFor="mail">Mail:</label>
-        <input id="mail" type="text" onChange={handleForm} />
+        <input id="mail" name="mail" type="text" onChange={handleForm} />
 
         <label htmlFor="phoneNumber">Telefonnummer:</label>
         <input
           id="phoneNumber"
+          name="phoneNumber"
           type="text"
           onChange={handleForm}
         />
@@ -199,7 +206,7 @@ export const BookingForm = () => {
           <span>Jag godkänner användarvillkoren</span>
         </label>
 
-        <button onClick={handleBooking}>Boka</button>
+        <button disabled={!formValidation} onClick={handleBooking}>Boka</button>
       </form>
     </>
   );
@@ -210,7 +217,7 @@ export const BookingForm = () => {
 // utgråade tider om full?
 
 //error meddelande? till användren?
-//validering för input med tex bara nummer osv
+
 // tömma inputs efter
 
 //disabled på button om validering inte går igenom så kund ej kan trycka på knappen, plus ett felmeddelande till användaren 
