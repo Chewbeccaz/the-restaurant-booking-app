@@ -14,6 +14,8 @@ export const BookingForm = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [formValidation, setFormValidation] = useState(false);
 
+  const [errorValidation, setErrorValidation] = useState(false);
+
   useEffect(() => {
     const isValid =
       firstName.trim() !== "" &&
@@ -71,17 +73,6 @@ export const BookingForm = () => {
 
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
-
-    //för att få disabled att funka
-    // const isValid =
-    // firstName.trim() !== "" &&
-    // lastName.trim() !== "" &&
-    // mail.trim() !== "" &&
-    // phoneNumber.trim() !== "" &&
-    // date !== "" &&
-    // time !== "" &&
-
-    // setFormValidation(isValid);
   };
 
   const [bookings, setBookings] = useState([]);
@@ -122,8 +113,16 @@ export const BookingForm = () => {
         setTime("");
         setPersons(1);
         setIsChecked(false);
+
+        setErrorValidation(false);
+
+
       } else {
         console.log("Formulär funkar inte");
+
+        setErrorValidation(true);
+
+
       }
     } catch (error) {
       console.log("Funkar inte", error);
@@ -206,7 +205,7 @@ export const BookingForm = () => {
 
         <label
           htmlFor="GDPR"
-          style={{ textDecoration: isChecked ? "line-through" : "none" }}
+          // style={{ textDecoration: isChecked ? "line-through" : "none" }}
         >
           <input
             id="GDPR"
@@ -217,10 +216,13 @@ export const BookingForm = () => {
           <span>Jag godkänner användarvillkoren</span>
         </label>
 
-        <button disabled={!formValidation} onClick={handleBooking}>
+        <button onClick={handleBooking}>
           Boka
         </button>
       </form>
+
+      {errorValidation && <p>Du måste fylla i alla fält för att kunna boka</p>}
+  
     </>
   );
 };
