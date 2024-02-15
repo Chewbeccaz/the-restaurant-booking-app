@@ -82,17 +82,16 @@ export const BookingForm = () => {
 
 
     //för att få disabled att funka
-    const isValid =
-    firstName.trim() !== "" &&
-    lastName.trim() !== "" &&
-    mail.trim() !== "" &&
-    phoneNumber.trim() !== "" &&
-    date !== "" &&
-    time !== "" &&
-    !isChecked;
-   
+    // const isValid =
+    // firstName.trim() !== "" &&
+    // lastName.trim() !== "" &&
+    // mail.trim() !== "" &&
+    // phoneNumber.trim() !== "" &&
+    // date !== "" &&
+    // time !== "" &&
 
-    setFormValidation(isValid);
+    // setFormValidation(isValid);
+
   };
 
 
@@ -206,7 +205,7 @@ export const BookingForm = () => {
           <span>Jag godkänner användarvillkoren</span>
         </label>
 
-        <button disabled={!formValidation} onClick={handleBooking}>Boka</button>
+        <button onClick={handleBooking}>Boka</button>
       </form>
     </>
   );
