@@ -115,14 +115,10 @@ export const BookingForm = () => {
         setIsChecked(false);
 
         setErrorValidation(false);
-
-
       } else {
         console.log("Formulär funkar inte");
 
         setErrorValidation(true);
-
-
       }
     } catch (error) {
       console.log("Funkar inte", error);
@@ -203,10 +199,7 @@ export const BookingForm = () => {
           <option value="21:00">21:00</option>
         </select>
 
-        <label
-          htmlFor="GDPR"
-          // style={{ textDecoration: isChecked ? "line-through" : "none" }}
-        >
+        <label htmlFor="GDPR">
           <input
             id="GDPR"
             type="checkbox"
@@ -216,13 +209,10 @@ export const BookingForm = () => {
           <span>Jag godkänner användarvillkoren</span>
         </label>
 
-        <button onClick={handleBooking}>
-          Boka
-        </button>
+        <button onClick={handleBooking}>Boka</button>
       </form>
 
       {errorValidation && <p>Du måste fylla i alla fält för att kunna boka</p>}
-  
     </>
   );
 };
@@ -231,8 +221,4 @@ export const BookingForm = () => {
 
 // utgråade tider om full?
 
-//error meddelande? till användren?
-
-// tömma inputs efter
-
-//disabled på button om validering inte går igenom så kund ej kan trycka på knappen, plus ett felmeddelande till användaren
+//disabled på button om validering inte går igenom så kund ej kan trycka på knappen, eller felmeddelande om inte allt är ifyllt?
