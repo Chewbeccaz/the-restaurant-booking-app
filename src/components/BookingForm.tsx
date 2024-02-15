@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
+import { BookingFormError } from "./BookingFormError";
 
 export const BookingForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -212,13 +213,16 @@ export const BookingForm = () => {
         <button onClick={handleBooking}>Boka</button>
       </form>
 
-      {errorValidation && <p>Du måste fylla i alla fält för att kunna boka</p>}
+      <BookingFormError errorValidation={errorValidation} />
+
     </>
   );
 };
 
-// react date picker ist för input??
+
 
 // utgråade tider om full?
+
+//inte kunna boka datum bakåt i tiden
 
 //disabled på button om validering inte går igenom så kund ej kan trycka på knappen, eller felmeddelande om inte allt är ifyllt?
