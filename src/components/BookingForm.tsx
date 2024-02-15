@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
 
@@ -12,6 +12,10 @@ export const BookingForm = () => {
   const [time, setTime] = useState("");
   const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
+
+
+ const [formValidation, setFormValidation] = useState(false);
+
 
   const handleForm = (
     e:
@@ -53,15 +57,56 @@ export const BookingForm = () => {
           break;
       }
     }
+
+
+    const isValid =
+    firstName !== "" &&
+    lastName !== "" &&
+    mail !== "" &&
+    phoneNumber !== "" &&
+    date !== "" &&
+    time !== "" &&
+    persons !== 0;
+    isChecked;
+
+    setFormValidation(isValid);
+
+   
   };
+
+
+
+
 
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
+
+    const isValid =
+      firstName !== "" &&
+      lastName !== "" &&
+      mail !== "" &&
+      phoneNumber !== "" &&
+      date !== "" &&
+      time !== "" &&
+      persons !== 0;
+      !isChecked;
+
+      setFormValidation(isValid);
+
+    
   };
+
+
+  
+
 
   const handleBooking = async () => {
     try {
-      const createBooking: CreateBooking = {
+
+
+
+      if (formValidation) {
+        const createBooking: CreateBooking = {
         restaurantId: restaurantID,
         date: date,
         time: time,
@@ -73,12 +118,20 @@ export const BookingForm = () => {
           phone: phoneNumber,
         },
       };
+      
+
 
       const response = await axios.post(
         "https://school-restaurant-api.azurewebsites.net/booking/create",
         createBooking
       );
       console.log("Funkar", response.data);
+
+
+      } else {
+        console.log("Formulär funkar inte");
+      }
+
     } catch (error) {
       console.log("Funkar inte", error);
     }
@@ -151,6 +204,7 @@ export const BookingForm = () => {
 // react date picker ist för input??
 
 // utgråade tider om full?
+
 //error meddelande? till användren?
 //validering för input med tex bara nummer osv
 // tömma inputs efter
