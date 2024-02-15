@@ -14,7 +14,7 @@ export const BookingForm = () => {
   const [isChecked, setIsChecked] = useState(false);
 
 
- const [formValidation, setFormValidation] = useState(false);
+  // const [formValidation, setFormValidation] = useState(false);
 
 
   const handleForm = (
@@ -59,18 +59,17 @@ export const BookingForm = () => {
     }
 
 
-    const isValid =
-    firstName !== "" &&
-    lastName !== "" &&
-    mail !== "" &&
-    phoneNumber !== "" &&
-    date !== "" &&
-    time !== "" &&
-    persons !== 0;
-    isChecked;
+  //validation för inputs
+    // const isValid =
+    // firstName.trim() !== "" &&
+    // lastName.trim() !== "" &&
+    // mail.trim() !== "" &&
+    // phoneNumber.trim() !== "" &&
+    // date !== "" &&
+    // time !== "" &&
+    // isChecked;
 
-    setFormValidation(isValid);
-
+    // setFormValidation(isValid);
    
   };
 
@@ -81,17 +80,18 @@ export const BookingForm = () => {
   const handleCheckbox = () => {
     setIsChecked(!isChecked);
 
-    const isValid =
-      firstName !== "" &&
-      lastName !== "" &&
-      mail !== "" &&
-      phoneNumber !== "" &&
-      date !== "" &&
-      time !== "" &&
-      persons !== 0;
-      !isChecked;
 
-      setFormValidation(isValid);
+    //validation för inputs när checkbox är checked
+    // const isValid =
+    //   firstName.trim() !== "" &&
+    //   lastName.trim() !== "" &&
+    //   mail.trim() !== "" &&
+    //   phoneNumber.trim() !== "" &&
+    //   date !== "" &&
+    //   time !== "" &&
+    //   sätta checked med en ! framför
+
+    //   setFormValidation(isValid);
 
     
   };
@@ -103,10 +103,7 @@ export const BookingForm = () => {
   const handleBooking = async () => {
     try {
 
-
-
-      if (formValidation) {
-        const createBooking: CreateBooking = {
+      const createBooking: CreateBooking = {
         restaurantId: restaurantID,
         date: date,
         time: time,
@@ -117,26 +114,33 @@ export const BookingForm = () => {
           email: mail,
           phone: phoneNumber,
         },
-      };
-      
+
+      }
 
 
-      const response = await axios.post(
+        const response = await axios.post(
         "https://school-restaurant-api.azurewebsites.net/booking/create",
         createBooking
       );
       console.log("Funkar", response.data);
 
 
-      } else {
-        console.log("Formulär funkar inte");
-      }
+    //   //validering för inputs
+    //   if (formValidation) {
+        
+    //   };
+    //  //kollar om validering funkar
+    //    else {
+    //     console.log("Formulär funkar inte");
+    //   }
 
     } catch (error) {
       console.log("Funkar inte", error);
     }
   };
 
+
+  
   return (
     <>
       <form onSubmit={handleForm}>
@@ -208,3 +212,5 @@ export const BookingForm = () => {
 //error meddelande? till användren?
 //validering för input med tex bara nummer osv
 // tömma inputs efter
+
+//disabled på button om validering inte går igenom så kund ej kan trycka på knappen, plus ett felmeddelande till användaren 
