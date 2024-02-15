@@ -22,7 +22,7 @@ export const AdminTable = () => {
   };
 
   const deleteBooking = (id: string) => {
-    // Filter out the booking with the given id
+    // Tar bort alla med det valda id:t.
     const remainingBookings = bookings.filter((booking) => booking._id !== id);
     setBookings(remainingBookings);
   };
@@ -51,6 +51,7 @@ export const AdminTable = () => {
               key={booking._id}
               booking={booking}
               onDelete={deleteBooking}
+              onUpdate={fetchBooking}
             />
           ))}
         </tbody>
