@@ -130,107 +130,98 @@ export const BookingForm = () => {
   return (
     <>
       <form onSubmit={handleForm}>
-
         <BookingInputs
-        label="Förnamn:"
-        id="firstName"
-        name="firstName"
-        type="text"
-        value={firstName}
-        onChange={handleForm}
+          label="Förnamn:"
+          id="firstName"
+          name="firstName"
+          type="text"
+          value={firstName}
+          onChange={handleForm}
         />
 
         <BookingInputs
-        label="Efternamn:"
-        id="lastName"
-        name="lastName"
-        type="text"
-        value={lastName}
-        onChange={handleForm}
+          label="Efternamn:"
+          id="lastName"
+          name="lastName"
+          type="text"
+          value={lastName}
+          onChange={handleForm}
         />
 
         <BookingInputs
-        label="Mail:"
-        id="mail"
-        name="mail"
-        type="text"
-        value={mail}
-        onChange={handleForm}
+          label="Mail:"
+          id="mail"
+          name="mail"
+          type="text"
+          value={mail}
+          onChange={handleForm}
         />
 
         <BookingInputs
-        label="Telefonnummer:"
-        id="phoneNumber"
-        name="phoneNumber"
-        type="number"
-        value={phoneNumber}
-        onChange={handleForm}
+          label="Telefonnummer:"
+          id="phoneNumber"
+          name="phoneNumber"
+          type="number"
+          value={phoneNumber}
+          onChange={handleForm}
         />
-        
 
-
-        <label htmlFor="personQuantity">Antal personer</label>
-        <select
+        <BookingInputs
+          label="Antal personer:"
           id="personQuantity"
           name="personQuantity"
-          value={persons}
+          type="select"
+          value={persons.toString()}
+          options={Array.from({ length: 90 }, (_, i) => i + 1).map((i) => ({
+            value: i.toString(),
+            text: i.toString(),
+          }))}
           onChange={handleForm}
-        >
-          {Array.from({ length: 90 }, (_, i) => i + 1).map((i) => (
-            <option key={i} value={i}>
-              {i}
-            </option>
-          ))}
-        </select>
-
-
-
-        <BookingInputs
-        label="Välj datum:"
-        id="chooseDate"
-        name="chooseDate"
-        type="date"
-        value={date}
-        onChange={handleForm}
         />
 
+        <BookingInputs
+          label="Välj datum:"
+          id="chooseDate"
+          name="chooseDate"
+          type="date"
+          value={date}
+          onChange={handleForm}
+        />
 
-        <label htmlFor="chooseTime">Välj tid:</label>
-        <select
+        <BookingInputs
+          label="Välj tid:"
           id="chooseTime"
           name="chooseTime"
+          type="select"
           value={time}
+          options={[
+            { value: "", text: "Tider" },
+            { value: "18:00", text: "18:00" },
+            { value: "21:00", text: "21:00" },
+          ]}
           onChange={handleForm}
-        >
-          <option value="">Tider</option>
-          <option value="18:00">18:00</option>
-          <option value="21:00">21:00</option>
-        </select>
+        />
 
-
-        <label htmlFor="GDPR">
-          <input
-            id="GDPR"
-            type="checkbox"
-            checked={isChecked}
-            onChange={handleCheckbox}
-          />
-          <span>Jag godkänner användarvillkoren</span>
-        </label>
+        <BookingInputs
+          label="Jag godkänner användarvillkoren"
+          id="GDPR"
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckbox}
+        />
 
         <button onClick={handleBooking}>Boka</button>
       </form>
 
       <BookingFormError errorValidation={errorValidation} />
-
     </>
   );
 };
-
-
 
 // utgråade tider om full?
 
 //inte kunna boka datum bakåt i tiden
 
 //disabled på button om validering inte går igenom så kund ej kan trycka på knappen, eller felmeddelande om inte allt är ifyllt?
+
+//checkboxen framför texten
