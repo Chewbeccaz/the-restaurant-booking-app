@@ -21,6 +21,12 @@ export const AdminTable = () => {
     }
   };
 
+  const deleteBooking = (id: string) => {
+    // Filter out the booking with the given id
+    const remainingBookings = bookings.filter((booking) => booking._id !== id);
+    setBookings(remainingBookings);
+  };
+
   useEffect(() => {
     fetchBooking();
   }, []);
@@ -41,7 +47,11 @@ export const AdminTable = () => {
         </thead>
         <tbody>
           {bookings.map((booking) => (
-            <AdminTableRow key={booking._id} booking={booking} />
+            <AdminTableRow
+              key={booking._id}
+              booking={booking}
+              onDelete={deleteBooking}
+            />
           ))}
         </tbody>
       </table>

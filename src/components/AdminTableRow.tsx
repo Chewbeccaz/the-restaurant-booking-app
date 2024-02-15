@@ -1,10 +1,18 @@
+import { AdminTableDelete } from "./AdminTableDelete";
 import { Booking } from "../models/Booking";
 
 interface AdminTableRowProps {
   booking: Booking;
+  children?: React.ReactNode;
+  onDelete: (id: string) => void;
 }
+
 //Destructuring (Slippa skriva props.booking)
-export const AdminTableRow = ({ booking }: AdminTableRowProps) => {
+export const AdminTableRow = ({
+  booking,
+  children,
+  onDelete,
+}: AdminTableRowProps) => {
   return (
     <>
       <tr>
@@ -17,7 +25,8 @@ export const AdminTableRow = ({ booking }: AdminTableRowProps) => {
           <button>Ändra</button>
         </td>
         <td>
-          <button>Radera</button>
+          {children}
+          <AdminTableDelete id={booking._id} onDelete={onDelete} />
         </td>
       </tr>
     </>
