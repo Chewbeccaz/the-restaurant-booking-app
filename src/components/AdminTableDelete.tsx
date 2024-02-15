@@ -13,11 +13,10 @@ export const AdminTableDelete = ({ id, onDelete }: DeleteButtonProps) => {
     setIsDeleting(true);
     console.log("Deleting booking with id", id);
     try {
-      if (isDeleting) {
-        await axios.delete(
-          `https://school-restaurant-api.azurewebsites.net/booking/delete/${id}`
-        );
-      }
+      await axios.delete(
+        `https://school-restaurant-api.azurewebsites.net/booking/delete/${id}`
+      );
+
       onDelete(id);
     } catch (error) {
       console.log("Error deleting booking", error);
@@ -25,15 +24,13 @@ export const AdminTableDelete = ({ id, onDelete }: DeleteButtonProps) => {
     setIsDeleting(false);
   };
 
-  //   useEffect(() => {
-  //     if (isDeleting) {
-  //       handleDelete();
-  //     }
-  //   }, [isDeleting]);
-
   return (
     <>
-      <button onClick={handleDelete}>Radera</button>
+      {/* <button onClick={handleDelete}>Radera</button> */}
+      {/* Gör en "spinner av detta..? Annars vanlig knapp." */}
+      <button disabled={isDeleting} onClick={handleDelete}>
+        {isDeleting ? "Deleting..." : "Radera"}
+      </button>
     </>
   );
 };
