@@ -1,6 +1,5 @@
 import { AdminTableDelete } from "./AdminTableDelete";
 import { Booking } from "../models/Booking";
-import { useState } from "react";
 import { AdminTableUpdate } from "./AdminTableUpdate";
 
 interface AdminTableRowProps {
@@ -17,11 +16,7 @@ export const AdminTableRow = ({
   onDelete,
   onUpdate,
 }: AdminTableRowProps) => {
-  const [isUpdating, setIsUpdating] = useState(false);
-
-  const handleUpdate = () => {
-    setIsUpdating(true);
-  };
+  const isUpdating = true;
 
   return (
     <>
@@ -32,21 +27,18 @@ export const AdminTableRow = ({
         <td>{booking.numberOfGuests}</td>
         <td>{booking.customerId}</td>
         <td>
-          <button onClick={handleUpdate}>Ändra</button>
-        </td>
-        <td>
-          {children}
-          <AdminTableDelete id={booking._id} onDelete={onDelete} />
-        </td>
-        {isUpdating && (
-          <td>
+          {isUpdating && (
             <AdminTableUpdate
               id={booking._id}
               customerId={booking.customerId}
               onUpdate={onUpdate}
             />
-          </td>
-        )}
+          )}
+        </td>
+        <td>
+          {children}
+          <AdminTableDelete id={booking._id} onDelete={onDelete} />
+        </td>
       </tr>
     </>
   );
