@@ -1,7 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
+import { BookingFormError } from "./BookingFormError";
+import { BookingInputs } from "./BookingInputs";
+import { BookingValidation } from "./BookingValidation";
 
 export const BookingForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -13,21 +16,7 @@ export const BookingForm = () => {
   const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
   const [formValidation, setFormValidation] = useState(false);
-
   const [errorValidation, setErrorValidation] = useState(false);
-
-  useEffect(() => {
-    const isValid =
-      firstName.trim() !== "" &&
-      lastName.trim() !== "" &&
-      mail.trim() !== "" &&
-      phoneNumber.trim() !== "" &&
-      date !== "" &&
-      time !== "" &&
-      isChecked;
-
-    setFormValidation(isValid);
-  }, [firstName, lastName, mail, phoneNumber, date, time, isChecked]);
 
   const handleForm = (
     e:
@@ -128,8 +117,8 @@ export const BookingForm = () => {
   return (
     <>
       <form onSubmit={handleForm}>
-        <label htmlFor="firstName">Förnamn:</label>
-        <input
+        <BookingInputs
+          label="Förnamn:"
           id="firstName"
           name="firstName"
           type="text"
@@ -137,8 +126,8 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <label htmlFor="lastName">Efternamn:</label>
-        <input
+        <BookingInputs
+          label="Efternamn:"
           id="lastName"
           name="lastName"
           type="text"
@@ -146,8 +135,8 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <label htmlFor="mail">Mail:</label>
-        <input
+        <BookingInputs
+          label="Mail:"
           id="mail"
           name="mail"
           type="text"
@@ -155,8 +144,8 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <label htmlFor="phoneNumber">Telefonnummer:</label>
-        <input
+        <BookingInputs
+          label="Telefonnummer:"
           id="phoneNumber"
           name="phoneNumber"
           type="number"
@@ -164,61 +153,75 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <label htmlFor="personQuantity">Antal personer</label>
-        <select
+        <BookingInputs
+          label="Antal personer:"
           id="personQuantity"
           name="personQuantity"
-          value={persons}
+          type="select"
+          value={persons.toString()}
+          options={Array.from({ length: 90 }, (_, i) => i + 1).map((i) => ({
+            value: i.toString(),
+            text: i.toString(),
+          }))}
           onChange={handleForm}
-        >
-          {Array.from({ length: 90 }, (_, i) => i + 1).map((i) => (
-            <option key={i} value={i}>
-              {i}
-            </option>
-          ))}
-        </select>
+        />
 
-        <label htmlFor="chooseDate">Välj datum:</label>
-        <input
+        <BookingInputs
+          label="Välj datum:"
           id="chooseDate"
-          type="date"
           name="chooseDate"
+          type="date"
           value={date}
           onChange={handleForm}
         />
 
-        <label htmlFor="chooseTime">Välj tid:</label>
-        <select
+        <BookingInputs
+          label="Välj tid:"
           id="chooseTime"
           name="chooseTime"
+          type="select"
           value={time}
+          options={[
+            { value: "", text: "Tider" },
+            { value: "18:00", text: "18:00" },
+            { value: "21:00", text: "21:00" },
+          ]}
           onChange={handleForm}
-        >
-          <option value="">Tider</option>
-          <option value="18:00">18:00</option>
-          <option value="21:00">21:00</option>
-        </select>
+        />
 
-        <label htmlFor="GDPR">
-          <input
-            id="GDPR"
-            type="checkbox"
-            checked={isChecked}
-            onChange={handleCheckbox}
-          />
-          <span>Jag godkänner användarvillkoren</span>
-        </label>
+        <BookingInputs
+          label="Jag godkänner användarvillkoren"
+          id="GDPR"
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckbox}
+        />
+
+        <BookingValidation
+          formInputs={{
+            firstName,
+            lastName,
+            mail,
+            phoneNumber,
+            date,
+            time,
+            isChecked,
+          }}
+          setFormValidation={setFormValidation}
+        />
 
         <button onClick={handleBooking}>Boka</button>
       </form>
 
-      {errorValidation && <p>Du måste fylla i alla fält för att kunna boka</p>}
+      <BookingFormError errorValidation={errorValidation} />
     </>
   );
 };
 
-// react date picker ist för input??
-
 // utgråade tider om full?
 
+//inte kunna boka datum bakåt i tiden
+
 //disabled på button om validering inte går igenom så kund ej kan trycka på knappen, eller felmeddelande om inte allt är ifyllt?
+
+//checkboxen framför texten
