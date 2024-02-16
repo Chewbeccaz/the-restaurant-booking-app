@@ -4,7 +4,8 @@
 
 import { restaurantID } from "../main";
 import { Booking } from "../models/Booking";
-import { get } from "./ServiceBase";
+import { CreateBooking } from "../models/CreateBooking";
+import { get, post } from "./ServiceBase";
 
 // const API_BASE_URL = "https://omdbapi.com/?apikey=416ed51a&";
 
@@ -30,5 +31,18 @@ export const fetchBooking = async () => {
     return response.data;
   } catch (error) {
     console.log("Error fetching bookings", error);
+  }
+};
+
+export const makeBooking = async (bookingData: CreateBooking) => {
+  try {
+    console.log("funkar det?");
+    const response = await post<CreateBooking[]>(
+      `${API_BASE_URL}booking/create`,
+      bookingData
+    );
+    console.log("Funkar det 2?", response.data);
+  } catch (error) {
+    console.log("Error creating bookings", error);
   }
 };
