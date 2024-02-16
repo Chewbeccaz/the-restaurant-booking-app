@@ -14,22 +14,25 @@ export const BookingForm = () => {
   const [time, setTime] = useState("");
   const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
-  const [formValidation, setFormValidation] = useState(false);
+
+
+
+  // const [formValidation, setFormValidation] = useState(false);
 
   const [errorValidation, setErrorValidation] = useState(false);
 
-  useEffect(() => {
-    const isValid =
-      firstName.trim() !== "" &&
-      lastName.trim() !== "" &&
-      mail.trim() !== "" &&
-      phoneNumber.trim() !== "" &&
-      date !== "" &&
-      time !== "" &&
-      isChecked;
+  // useEffect(() => {
+  //   const isValid =
+  //     firstName.trim() !== "" &&
+  //     lastName.trim() !== "" &&
+  //     mail.trim() !== "" &&
+  //     phoneNumber.trim() !== "" &&
+  //     date !== "" &&
+  //     time !== "" &&
+  //     isChecked;
 
-    setFormValidation(isValid);
-  }, [firstName, lastName, mail, phoneNumber, date, time, isChecked]);
+  //   setFormValidation(isValid);
+  // }, [firstName, lastName, mail, phoneNumber, date, time, isChecked]);
 
   const handleForm = (
     e:
