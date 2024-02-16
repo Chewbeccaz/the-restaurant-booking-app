@@ -71,7 +71,7 @@ export const BookingInputs: React.FC<IInputs | ISelect | ICheckbox> = (
 
     return (
       <>
-        <label htmlFor={id}></label>
+        <label htmlFor={id}>{label}</label>
         <input
           id={id}
           type={type}
