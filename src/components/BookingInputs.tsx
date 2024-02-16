@@ -24,7 +24,11 @@ interface ICheckbox {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const BookingInputs: React.FC<IInputs | ISelect | ICheckbox> = (
+interface IDate extends IInputs {
+  min?: string;
+}
+
+export const BookingInputs: React.FC<IInputs | ISelect | ICheckbox | IDate> = (
   props
 ) => {
   if ("options" in props) {
@@ -52,20 +56,40 @@ export const BookingInputs: React.FC<IInputs | ISelect | ICheckbox> = (
   } else if ("type" in props) {
     const { label, id, name, type, value, onChange } = props as IInputs;
 
-    return (
-      <>
-        <label htmlFor={id}>{label}</label>
-        <input
-          id={id}
-          name={name}
-          type={type}
-          value={value}
-          onChange={
-            onChange as (e: React.ChangeEvent<HTMLInputElement>) => void
-          }
-        />
-      </>
-    );
+    if (type === "date") {
+      const { min } = props as IDate;
+
+      return (
+        <>
+          <label htmlFor={id}>{label}</label>
+          <input
+            id={id}
+            name={name}
+            type={type}
+            value={value}
+            min={min}
+            onChange={
+              onChange as (e: React.ChangeEvent<HTMLInputElement>) => void
+            }
+          />
+        </>
+      );
+    } else {
+      return (
+        <>
+          <label htmlFor={id}>{label}</label>
+          <input
+            id={id}
+            name={name}
+            type={type}
+            value={value}
+            onChange={
+              onChange as (e: React.ChangeEvent<HTMLInputElement>) => void
+            }
+          />
+        </>
+      );
+    }
   } else {
     const { label, id, type, checked, onChange } = props as ICheckbox;
 
