@@ -1,9 +1,10 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
 import { BookingFormError } from "./BookingFormError";
 import { BookingInputs } from "./BookingInputs";
+import { BookingValidation } from "./BookingValidation";
 
 export const BookingForm = () => {
   const [firstName, setFirstName] = useState("");
@@ -14,25 +15,8 @@ export const BookingForm = () => {
   const [time, setTime] = useState("");
   const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
-
-
-
-  // const [formValidation, setFormValidation] = useState(false);
-
+  const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
-
-  // useEffect(() => {
-  //   const isValid =
-  //     firstName.trim() !== "" &&
-  //     lastName.trim() !== "" &&
-  //     mail.trim() !== "" &&
-  //     phoneNumber.trim() !== "" &&
-  //     date !== "" &&
-  //     time !== "" &&
-  //     isChecked;
-
-  //   setFormValidation(isValid);
-  // }, [firstName, lastName, mail, phoneNumber, date, time, isChecked]);
 
   const handleForm = (
     e:
@@ -211,6 +195,19 @@ export const BookingForm = () => {
           type="checkbox"
           checked={isChecked}
           onChange={handleCheckbox}
+        />
+
+        <BookingValidation
+          formInputs={{
+            firstName,
+            lastName,
+            mail,
+            phoneNumber,
+            date,
+            time,
+            isChecked,
+          }}
+          setFormValidation={setFormValidation}
         />
 
         <button onClick={handleBooking}>Boka</button>
