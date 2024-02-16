@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
 import { BookingFormError } from "./BookingFormError";
 import { BookingInputs } from "./BookingInputs";
 import { BookingValidation } from "./BookingValidation";
+import { makeBooking } from "../services/BookingService";
 
 const getCurrentDate = () => {
   const currentDate = new Date();
@@ -73,18 +73,10 @@ export const BookingForm = () => {
     setIsChecked(!isChecked);
   };
 
-  const [bookings, setBookings] = useState([]);
-
   const handleBooking = async () => {
     try {
-      const getAllBookings = await axios.get(
-        `https://school-restaurant-api.azurewebsites.net/booking/restaurant/${
-          import.meta.env.VITE_RESTURANTID
-        }`
-      );
-
       if (formValidation) {
-        const createBooking: CreateBooking = {
+        const bookingData: CreateBooking = {
           restaurantId: restaurantID,
           date: date,
           time: time,
@@ -96,12 +88,13 @@ export const BookingForm = () => {
             phone: phoneNumber,
           },
         };
+        await makeBooking(bookingData);
 
-        const response = await axios.post(
-          "https://school-restaurant-api.azurewebsites.net/booking/create",
-          createBooking
-        );
-        console.log("Funkar", response.data);
+        // const response = await axios.post(
+        //   "https://school-restaurant-api.azurewebsites.net/booking/create",
+        //   createBooking
+        // );
+        // console.log("Funkar", response.data);
 
         setFirstName("");
         setLastName("");

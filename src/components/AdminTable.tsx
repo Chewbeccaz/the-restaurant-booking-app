@@ -1,25 +1,10 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Booking } from "../models/Booking";
 import { AdminTableRow } from "./AdminTableRow";
+import { fetchBooking } from "../services/BookingService";
 
 export const AdminTable = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
-
-  //Rensa och lägg in anropen i Services sedan.
-
-  const fetchBooking = async () => {
-    try {
-      const response = await axios.get(
-        `https://school-restaurant-api.azurewebsites.net/booking/restaurant/${
-          import.meta.env.VITE_RESTURANTID
-        }`
-      );
-      setBookings(response.data);
-    } catch (error) {
-      console.log("Error fetching bookings", error);
-    }
-  };
 
   const deleteBooking = (id: string) => {
     // Tar bort alla med det valda id:t.
@@ -27,8 +12,24 @@ export const AdminTable = () => {
     setBookings(remainingBookings);
   };
 
+  // useEffect(() => {
+  //   fetchBooking();
+  // }, []);
+
+  //KALLAS 2 GÅNGER. MEST TROLIGT PROPSPROBLEM MED ONUPDATE-FUNKTIONEN.
+
+  const fetchData = async () => {
+    try {
+      const response = await fetchBooking();
+      if (response) {
+        setBookings(response);
+      }
+    } catch (error) {
+      console.log("Error fetching bookings", error);
+    }
+  };
   useEffect(() => {
-    fetchBooking();
+    fetchData();
   }, []);
 
   return (
@@ -51,7 +52,7 @@ export const AdminTable = () => {
               key={booking._id}
               booking={booking}
               onDelete={deleteBooking}
-              onUpdate={fetchBooking}
+              onUpdate={fetchData}
             />
           ))}
         </tbody>
