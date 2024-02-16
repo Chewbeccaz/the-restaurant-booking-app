@@ -4,6 +4,9 @@ import { CreateBooking } from "../models/CreateBooking";
 import { BookingFormError } from "./BookingFormError";
 import { BookingInputs } from "./BookingInputs";
 import { BookingValidation } from "./BookingValidation";
+
+import { getCurrentDate } from "./CurrentDate";
+
 import { makeBooking } from "../services/BookingService";
 
 const getCurrentDate = () => {
@@ -14,6 +17,7 @@ const getCurrentDate = () => {
 
   return `${year}-${month}-${day}`;
 };
+
 
 export const BookingForm = () => {
   const [firstName, setFirstName] = useState("");
