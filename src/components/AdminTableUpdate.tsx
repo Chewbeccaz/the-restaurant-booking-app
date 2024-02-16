@@ -19,7 +19,9 @@ export const AdminTableUpdate = ({
     numberOfGuests: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setShowDialog({ ...showDialog, [name]: value });
   };
@@ -49,24 +51,33 @@ export const AdminTableUpdate = ({
     setIsDialogOpen(!isDialogOpen);
   };
 
+  //Borde jag lägga in en formtagg också??
   return (
     <>
       <button onClick={toggleDialog}>Ändra</button>
       {isDialogOpen && (
         <div className="dialog">
           <h2>Update Booking</h2>
+          <label htmlFor="date">Datum:</label>
           <input
             type="date"
             name="date"
             value={showDialog.date}
             onChange={handleChange}
           />
-          <input
-            type="time"
+
+          <label htmlFor="Tid:">Datum:</label>
+          <select
+            id="time"
             name="time"
             value={showDialog.time}
-            onChange={handleChange}
-          />
+            onChange={handleChange}>
+            <option value="">Tider</option>
+            <option value="18:00">18:00</option>
+            <option value="21:00">21:00</option>
+          </select>
+
+          <label htmlFor="date">Antal gäster:</label>
           <input
             type="number"
             name="numberOfGuests"
