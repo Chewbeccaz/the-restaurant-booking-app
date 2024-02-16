@@ -5,7 +5,7 @@ import { restaurantID } from "../main";
 interface UpdateButtonProps {
   id: string;
   customerId: string;
-  onUpdate: (id: string) => void;
+  onUpdate: () => void;
 }
 
 export const AdminTableUpdate = ({
@@ -39,7 +39,7 @@ export const AdminTableUpdate = ({
           customerId: customerId, //nu kommer man åt denna via props. Ev kanske ligga i ett context?
         }
       );
-      onUpdate(id);
+      onUpdate();
     } catch (error) {
       console.log("Error updating booking", error);
     }
