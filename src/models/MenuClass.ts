@@ -5,7 +5,8 @@ export class Food {
     public dishTwo: string,
     public drink: string,
     public dishThree: string,
-    public price: number
+    public price: number,
+    public image: string,
     )
     {}
 }
