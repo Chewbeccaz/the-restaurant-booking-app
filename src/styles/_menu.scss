@@ -1,23 +1,35 @@
 .menu-section {
-    border: solid whitesmoke;
-    color: #fffff0;
-    display: flex;
-
+  color: #fffff0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom: dotted #b39c41;
 }
 
-.price {
-    text-align: right;
-  border: solid white;
 
-}
-
-.foodName {
-    text-align: left;
-    text-decoration: double underline;
-   border: solid white;
-
+ .foodName {
+  text-decoration: double underline;
 }
 
 .menu {
-  border: solid white;
+  width: 55%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.foodImage {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction:column;
+  width: 30%;
+}
+
+.foodImg {
+  width: 100%;
+  height: auto;
 }
