@@ -52,6 +52,7 @@ export const AdminTableUpdate = ({
   };
 
   //Borde jag lägga in en formtagg också??
+  //Bryt ut till en egen komponent.
   return (
     <>
       <button onClick={toggleDialog}>Ändra</button>
