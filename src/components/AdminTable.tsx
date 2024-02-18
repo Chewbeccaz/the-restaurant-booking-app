@@ -12,24 +12,26 @@ export const AdminTable = () => {
     setBookings(remainingBookings);
   };
 
-  // useEffect(() => {
-  //   fetchBooking();
-  // }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
-  //KALLAS 2 GÅNGER. MEST TROLIGT PROPSPROBLEM MED ONUPDATE-FUNKTIONEN.
+  const fetchData = () => {
+    setIsLoading(true);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetchBooking();
-      if (response) {
-        setBookings(response);
-      }
-    } catch (error) {
-      console.log("Error fetching bookings", error);
-    }
+    fetchBooking()
+      .then((data) => {
+        setIsLoading(false);
+        if (data) setBookings(data);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        console.log("error :(", err);
+      });
   };
+
   useEffect(() => {
-    fetchData();
+    if (!isLoading) {
+      fetchData();
+    }
   }, []);
 
   return (
