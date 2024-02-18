@@ -1,0 +1,23 @@
+.header-container {
+  width: 100%;
+}
+
+.bg-img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: -200px;
+}
+
+.text-container {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.about-us {
+  margin-top: 400px;
+  margin-bottom: 400px;
+}

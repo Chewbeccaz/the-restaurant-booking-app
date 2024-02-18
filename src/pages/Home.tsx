@@ -1,15 +1,20 @@
-import { useEffect } from "react";
-import axios from "axios";
+import bgImage from "../img/examplebg.jpg";
 
 export const Home = () => {
-  return <h1>Home</h1>;
+  return (
+    <>
+      <div className="header-container">
+        <img src={bgImage} className="bg-img" alt="example-background"></img>
+        <div className="text-container">
+          <h1>Hollywood Harvest</h1>
+          <h3>Lights, camera, flavor!</h3>
+        </div>
+      </div>
+      <section className="about-us">
+        <h2>Här kommer: Upptäck vårt unika koncept av filmisk gastronomi.</h2>
+        <button>Meny</button>
+        <p>och en bild.</p>
+      </section>
+    </>
+  );
 };
-
-// export const resturantId = "65c937170082009f7aa42577";
-
-//   const fetchData = async () => {
-// const response = await axios.get(
-//     `https://school-restaurant-api.azurewebsites.net/restaurant/${resturantId}`
-//   );
-//   console.log(response.data);
-// };
