@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  // font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -32,6 +34,9 @@ body {
 
 h1 {
   font-size: 3.2em;
+  font-family: "Abril Fatface", serif;
+  text-transform: uppercase;
+  color: #8c792e;
   line-height: 1.1;
 }
 
