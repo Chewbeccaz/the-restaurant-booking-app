@@ -1,4 +1,5 @@
 import bgImage from "../img/examplebg.jpg";
+import dinoScreen from "../img/dinoscreen.jpg";
 
 export const Home = () => {
   return (
@@ -11,9 +12,14 @@ export const Home = () => {
         </div>
       </div>
       <section className="about-us">
-        <h2>Här kommer: Upptäck vårt unika koncept av filmisk gastronomi.</h2>
-        <button>Meny</button>
-        <p>och en bild.</p>
+        <div className="about-us-text">
+          <h2>Upptäck vårt unika koncept av filmisk gastronomi.</h2>
+          <div className="border"></div>
+          <button>Meny</button>
+        </div>
+        <div className="about-us-img">
+          <img src={dinoScreen} alt="moviescreen-dino"></img>
+        </div>
       </section>
     </>
   );
