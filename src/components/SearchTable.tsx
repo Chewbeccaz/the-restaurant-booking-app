@@ -54,9 +54,12 @@ export const SearchTable = ({
     }
   };
 
+  /*
+  Dessa rader kommer köras varje gång komponenten omrenderas. Fy dig! :(
   setDate("");
   setTime("");
   setPersons(1);
+  */
 
   return (
     <>
