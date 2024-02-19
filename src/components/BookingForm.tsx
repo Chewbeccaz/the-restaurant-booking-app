@@ -38,11 +38,11 @@ export const BookingForm = () => {
         API_BASE_URL + "booking/restaurant/" + restaurantID
       );
       console.log("Fetched sucess???", response.data);
-      const poopy = response.data.filter(
+      const fetchedTables = response.data.filter(
         (booking) => booking.time === time && booking.date === date
       );
-      console.log("poopy", poopy);
-      setIsTablesAvailable(poopy.length < 15); // blir antingen true eller false.
+      console.log("poopy", fetchedTables);
+      setIsTablesAvailable(fetchedTables.length < 15); // blir antingen true eller false.
       setIsSearching(false);
     } catch (error) {
       console.log("error fetching bookings", error);
