@@ -4,13 +4,18 @@ import { CreateBooking } from "../models/CreateBooking";
 import { BookingFormError } from "./BookingFormError";
 import { BookingInputs } from "./BookingInputs";
 import { BookingValidation } from "./BookingValidation";
-import { makeBooking } from "../services/BookingService";
+import { fetchBooking, makeBooking } from "../services/BookingService";
 import { BookingCheckbox } from "./BookingCheckbox";
 import { SearchTable } from "./SearchTable";
+import { Booking } from "../models/Booking";
+import { get } from "../services/ServiceBase";
+
+const API_BASE_URL = "https://school-restaurant-api.azurewebsites.net/";
 
 export const BookingForm = () => {
   const [isSeaching, setIsSearching] = useState(true);
   const [isTablesAvailable, setIsTablesAvailable] = useState(false);
+
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -23,14 +28,37 @@ export const BookingForm = () => {
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
 
-  const handleSearch = () => {
-    if (date && time) {
-      setIsTablesAvailable(true);
-    } else {
-      setIsTablesAvailable(false);
-    }
 
-    setIsSearching(false);
+  // export const fetchBooking = async () => {
+  //   try {
+  //     console.log("funkar det?");
+  //     const response = await get<Booking[]>(
+  //       API_BASE_URL + "booking/restaurant/" + restaurantID
+  //     );
+  //     console.log("Funkar det 2?", response.data);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.log("Error fetching bookings", error);
+  //   }
+  // };
+
+  const handleSearch = async () => {
+    try {
+      console.log("funkar det?");
+      const bookings = await get<Booking[]>(
+        API_BASE_URL + "booking/restaurant/" + restaurantID
+      );
+      console.log("Funkar det 2?", bookings.data);
+    } catch (error) {
+      console.log("Error fetching bookings", error);
+    }
+    // if (date && time) {
+    //   setIsTablesAvailable(true);
+    // } else {
+    //   setIsTablesAvailable(false);
+    // }
+    // setIsSearching(false);
+
   };
 
   //ta bort select på e? har testat nu
