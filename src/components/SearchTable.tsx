@@ -2,24 +2,27 @@ import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
 import { getCurrentDate } from "./CurrentDate";
 
 interface ISearchTable {
-    onSearch: () => void;
-    date: string;
-    setDate: (date: string) => void;
-    time: string;
-    setTime: (time: string) => void;
-    persons: number;
-    setPersons: (persons: number) => void;
-    
+  onSearch: () => void;
+  date: string;
+  setDate: (date: string) => void;
+  time: string;
+  setTime: (time: string) => void;
+  persons: number;
+  setPersons: (persons: number) => void;
 }
 
-export const SearchTable = ({ onSearch,date, setDate, time, setTime, persons, setPersons }: ISearchTable) => {
-
-
+export const SearchTable = ({
+  onSearch,
+  date,
+  setDate,
+  time,
+  setTime,
+  persons,
+  setPersons,
+}: ISearchTable) => {
   const handleSearch = () => {
     onSearch();
   };
-
-
 
   const handleForm = (
     e:

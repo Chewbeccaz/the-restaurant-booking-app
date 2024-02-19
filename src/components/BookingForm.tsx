@@ -9,7 +9,7 @@ import { BookingCheckbox } from "./BookingCheckbox";
 import { SearchTable } from "./SearchTable";
 
 export const BookingForm = () => {
-  const [isSeaching, setIsSearching] = useState(false);
+  const [isSeaching, setIsSearching] = useState(true);
   const [isTablesAvailable, setIsTablesAvailable] = useState(false);
 
   const [firstName, setFirstName] = useState("");
@@ -24,11 +24,13 @@ export const BookingForm = () => {
   const [errorValidation, setErrorValidation] = useState(false);
 
   const handleSearch = () => {
-    setIsSearching(true);
-    try {
-    } catch (error) {
-      console.log("Funkar inte", error);
+    if (date && time) {
+      setIsTablesAvailable(true);
+    } else {
+      setIsTablesAvailable(false);
     }
+
+    setIsSearching(false);
   };
 
   //ta bort select på e? har testat nu
@@ -106,78 +108,82 @@ export const BookingForm = () => {
 
   return (
     <>
-      <SearchTable
-        onSearch={handleSearch}
-        date={date}
-        setDate={setDate}
-        time={time}
-        setTime={setTime}
-        persons={persons}
-        setPersons={setPersons}
-      />
-
-      <form onSubmit={handleForm}>
-        <BookingInputs
-          label="Förnamn:"
-          id="firstName"
-          name="firstName"
-          type="text"
-          value={firstName}
-          onChange={handleForm}
+      {isSeaching ? (
+        <SearchTable
+          onSearch={handleSearch}
+          date={date}
+          setDate={setDate}
+          time={time}
+          setTime={setTime}
+          persons={persons}
+          setPersons={setPersons}
         />
+      ) : isTablesAvailable ? (
+        <form onSubmit={handleForm}>
+          <BookingInputs
+            label="Förnamn:"
+            id="firstName"
+            name="firstName"
+            type="text"
+            value={firstName}
+            onChange={handleForm}
+          />
 
-        <BookingInputs
-          label="Efternamn:"
-          id="lastName"
-          name="lastName"
-          type="text"
-          value={lastName}
-          onChange={handleForm}
-        />
+          <BookingInputs
+            label="Efternamn:"
+            id="lastName"
+            name="lastName"
+            type="text"
+            value={lastName}
+            onChange={handleForm}
+          />
 
-        <BookingInputs
-          label="Mail:"
-          id="mail"
-          name="mail"
-          type="text"
-          value={mail}
-          onChange={handleForm}
-        />
+          <BookingInputs
+            label="Mail:"
+            id="mail"
+            name="mail"
+            type="text"
+            value={mail}
+            onChange={handleForm}
+          />
 
-        <BookingInputs
-          label="Telefonnummer:"
-          id="phoneNumber"
-          name="phoneNumber"
-          type="number"
-          value={phoneNumber}
-          onChange={handleForm}
-        />
+          <BookingInputs
+            label="Telefonnummer:"
+            id="phoneNumber"
+            name="phoneNumber"
+            type="number"
+            value={phoneNumber}
+            onChange={handleForm}
+          />
 
-        <BookingCheckbox
-          label="Jag godkänner användarvillkoren"
-          id="checkbox"
-          type="checkbox"
-          checked={isChecked}
-          onChange={handleCheckbox}
-        />
+          <BookingCheckbox
+            label="Jag godkänner användarvillkoren"
+            id="checkbox"
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleCheckbox}
+          />
 
-        <BookingValidation
-          formInputs={{
-            firstName,
-            lastName,
-            mail,
-            phoneNumber,
-            date,
-            time,
-            isChecked,
-          }}
-          setFormValidation={setFormValidation}
-        />
+          <BookingValidation
+            formInputs={{
+              firstName,
+              lastName,
+              mail,
+              phoneNumber,
+              date,
+              time,
+              isChecked,
+            }}
+            setFormValidation={setFormValidation}
+          />
 
-        <button onClick={handleBooking}>Boka</button>
-      </form>
+          <button onClick={handleBooking}>Boka</button>
 
-      <BookingFormError errorValidation={errorValidation} />
+          <BookingFormError errorValidation={errorValidation} />
+        </form>
+      ) : (
+        <p>Tyvärr finns inga lediga bord</p>
+      )}
     </>
   );
 };
