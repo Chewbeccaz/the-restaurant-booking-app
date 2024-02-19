@@ -57,6 +57,7 @@ export const SearchTable = ({
   return (
     <>
       <form onSubmit={handleForm}>
+        <div className="inputs">
         <BookingDateTimeGuests
           label="Antal gäster:"
           id="personQuantity"
@@ -91,8 +92,11 @@ export const SearchTable = ({
           ]}
           onChange={handleForm}
         />
+        </div>
 
-        <button onClick={handleSearch}>Sök lediga bord</button>
+        
+        <button id="btn" onClick={handleSearch}>Sök lediga bord</button>
+        
       </form>
     </>
   );
