@@ -19,15 +19,18 @@ export const Contact = () => {
   }
   return (
     <>
-      <div>
-        <p className="name">{contact?.name}</p>
-        <p className="address"> {contact?.address}</p>
-        <p className="address">
-            {contact?.zip}
-            {contact?.city}
+      <div className="contactImgDiv"><img className="contactImg" src="/src/img/maffia.jpg" alt="find us"/></div>
+      <div className="cfContainer"><ContactForm /></div>
+      <div className="contactContainer">
+        <div className="contactInfo"><p className="contactName">{contact?.name}</p>
+        <p className="contactAddress"> {contact?.address}</p>
+        <p className="contactAddress">
+          {contact?.zip} {contact?.city}
           </p>
+          </div>
+          <div className="contactImg2Div"><img className="contactImg2" src="/src/img/maffia.jpg" alt="find us"/></div>
+        
       </div>
-      <ContactForm />
     </>
   );
 };

@@ -1,7 +1,72 @@
-.name {
+
+
+.contactName {
+  font-size: 20px;
+  color: #b39c41;
+}
+
+.contactAddress {
+  font-size: 15px;
+}
+
+.contactContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 20px;
+}
+
+.contactInfo {
+  display: block;
+  margin: 20px;
+  width: 48%;
+  text-align: center;
+  align-content: center;
+}
+
+.contactImg2 {
+  width: 50%;
+}
+
+.contactImg2Div {
+  width: 48%;
+}
+
+.contactHead {
+  color: #b39c41;
   font-size: 20px;
 }
 
-.address {
-  font-size: 15px;
+input {
+  height: 20px;
+
+}
+
+.contactImgDiv {
+  width: 100%;
+}
+
+.contactImg {
+  width: 50%;
+}
+
+.cfContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactButton {
+  background-color: black;
+  color:#b39c41;
+  border: 1px solid #b39c41;
+  
+}
+
+.contactButton:hover {
+  background-color: #b39c41;
+  color: black;
+  border: #b39c41;
+  text-decoration: underline;
 }

@@ -15,13 +15,13 @@ export const ContactForm = () => {
 
 return (
     <>
-      <h4>Kontakta oss</h4>
+      <h1 className="contactHead">Kontakta oss</h1>
 
-      <form className="contact-form">
-        <input type="text" placeholder="Namn" />
-        <input type="text" placeholder="Mailadress"/>
-        <input type="text" placeholder="Skriv ditt meddelande här"/>
-        <button onClick={handleClick}>Skicka</button>
+      <form className="contactForm">
+        <input className="nameInput" type="text" placeholder="Namn" />
+        <input className="mailInput" type="text" placeholder="Mailadress"/>
+        <input className="messageInput" type="text" placeholder="Skriv ditt meddelande här"/>
+        <button className="contactButton" onClick={handleClick}>Skicka</button>
       </form>
     </>
   );
