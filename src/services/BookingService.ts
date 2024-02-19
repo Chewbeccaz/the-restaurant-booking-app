@@ -1,23 +1,8 @@
-// import { IOmdbResponse } from "./../models/IOmdbResponse";
-// import { IMovieExt } from "../models/IMovieExt";
-// import { get } from "./serviceBase";
-
 import { restaurantID } from "../main";
 import { Booking } from "../models/Booking";
 import { CreateBooking } from "../models/CreateBooking";
-import { get, post } from "./ServiceBase";
-
-// const API_BASE_URL = "https://omdbapi.com/?apikey=416ed51a&";
-
-// export const searchMovies = async (searchText: string) => {
-//   const response = await get<IOmdbResponse>(API_BASE_URL + "s=" + searchText);
-//   return response.data.Search;
-// };
-
-// export const getMoviesById = async (id: string) => {
-//   const response = await get<IMovieExt>(API_BASE_URL + "i=" + id);
-//   return response.data;
-// };
+import { get, post, put } from "./ServiceBase";
+import { UpdateBooking } from "../models/UpdateBooking";
 
 const API_BASE_URL = "https://school-restaurant-api.azurewebsites.net/";
 
@@ -44,5 +29,18 @@ export const makeBooking = async (bookingData: CreateBooking) => {
     console.log("Funkar det 2?", response.data);
   } catch (error) {
     console.log("Error creating bookings", error);
+  }
+};
+
+export const updateBooking = async (id: string, updateData: UpdateBooking) => {
+  try {
+    console.log("Funkar det?");
+    const response = await put<UpdateBooking[]>(
+      `${API_BASE_URL}booking/update/${id}`,
+      updateData
+    );
+    console.log("Funkar det 2?", response.data);
+  } catch (error) {
+    console.log("Error updating bookings", error);
   }
 };
