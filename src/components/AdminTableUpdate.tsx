@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 import { restaurantID } from "../main";
+import { updateBooking } from "../services/BookingService";
 
 interface UpdateButtonProps {
   id: string;
@@ -28,17 +28,14 @@ export const AdminTableUpdate = ({
 
   const handleUpdate = async () => {
     try {
-      await axios.put(
-        `https://school-restaurant-api.azurewebsites.net/booking/update/${id}`,
-        {
-          id: id,
-          restaurantId: restaurantID,
-          date: showDialog.date,
-          time: showDialog.time,
-          numberOfGuests: showDialog.numberOfGuests,
-          customerId: customerId, //nu kommer man åt denna via props. Ev kanske ligga i ett context?
-        }
-      );
+      await updateBooking(id, {
+        id: id,
+        restaurantId: restaurantID,
+        date: showDialog.date,
+        time: showDialog.time,
+        numberOfGuests: parseInt(showDialog.numberOfGuests),
+        customerId: customerId,
+      });
       onUpdate();
     } catch (error) {
       console.log("Error updating booking", error);
