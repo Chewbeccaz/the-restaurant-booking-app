@@ -4,13 +4,9 @@ import { CreateBooking } from "../models/CreateBooking";
 import { BookingFormError } from "./BookingFormError";
 import { BookingInputs } from "./BookingInputs";
 import { BookingValidation } from "./BookingValidation";
-
-// import { getCurrentDate } from "./CurrentDate";
-
-import { fetchBooking, makeBooking } from "../services/BookingService";
+import { makeBooking } from "../services/BookingService";
 import { BookingCheckbox } from "./BookingCheckbox";
 import { SearchTable } from "./SearchTable";
-// import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
 
 export const BookingForm = () => {
   const [isSeaching, setIsSearching] = useState(false);
@@ -37,7 +33,10 @@ export const BookingForm = () => {
 
   //ta bort select på e? har testat nu
   const handleForm = (
-    e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
 
@@ -60,15 +59,7 @@ export const BookingForm = () => {
         case "phoneNumber":
           setPhoneNumber(value);
           break;
-        // case "chooseDate":
-        //   setDate(value);
-        //   break;
-        // case "chooseTime":
-        //   setTime(value);
-        //   break;
-        // case "personQuantity":
-        //   setPersons(Number(value));
-        //   break;
+
         default:
           break;
       }
@@ -100,9 +91,6 @@ export const BookingForm = () => {
         setLastName("");
         setMail("");
         setPhoneNumber("");
-        // setDate("");
-        // setTime("");
-        // setPersons(1);
         setIsChecked(false);
 
         setErrorValidation(false);
@@ -165,41 +153,6 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        {/* <BookingDateTimeGuests
-          label="Antal gäster:"
-          id="personQuantity"
-          name="personQuantity"
-          value={persons.toString()}
-          options={Array.from({ length: 90 }, (_, i) => i + 1).map((i) => ({
-            value: i.toString(),
-            text: i.toString(),
-          }))}
-          onChange={handleForm}
-        />
-
-        <BookingDateTimeGuests
-          label="Välj datum:"
-          id="chooseDate"
-          name="chooseDate"
-          type="date"
-          min={getCurrentDate()}
-          value={date}
-          onChange={handleForm}
-        />
-
-        <BookingDateTimeGuests
-          label="Välj tid:"
-          id="chooseTime"
-          name="chooseTime"
-          value={time}
-          options={[
-            { value: "", text: "Tider" },
-            { value: "18:00", text: "18:00" },
-            { value: "21:00", text: "21:00" },
-          ]}
-          onChange={handleForm}
-        /> */}
-
         <BookingCheckbox
           label="Jag godkänner användarvillkoren"
           id="checkbox"
@@ -228,11 +181,3 @@ export const BookingForm = () => {
     </>
   );
 };
-
-// utgråade tider om full?
-
-//inte kunna boka datum bakåt i tiden
-
-//disabled på button om validering inte går igenom så kund ej kan trycka på knappen, eller felmeddelande om inte allt är ifyllt?
-
-//checkboxen framför texten

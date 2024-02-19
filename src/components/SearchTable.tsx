@@ -1,7 +1,3 @@
-// datum tid personer
-//  knapp sök bord
-// knapp med validering om bord finns
-
 import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
 import { getCurrentDate } from "./CurrentDate";
 
@@ -17,9 +13,6 @@ interface ISearchTable {
 }
 
 export const SearchTable = ({ onSearch,date, setDate, time, setTime, persons, setPersons }: ISearchTable) => {
-//   const [date, setDate] = useState("");
-//   const [time, setTime] = useState("");
-//   const [persons, setPersons] = useState(1);
 
 
   const handleSearch = () => {
