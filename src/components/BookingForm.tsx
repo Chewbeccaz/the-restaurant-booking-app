@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
 import { BookingFormError } from "./BookingFormError";
 import { BookingInputs } from "./BookingInputs";
 import { BookingValidation } from "./BookingValidation";
-import { fetchBooking, makeBooking } from "../services/BookingService";
+import { makeBooking } from "../services/BookingService";
 import { BookingCheckbox } from "./BookingCheckbox";
 import { SearchTable } from "./SearchTable";
 import { Booking } from "../models/Booking";
@@ -27,53 +27,26 @@ export const BookingForm = () => {
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
 
-  const [arrayData, setArrayData] = useState<Booking[]>([]);
+  // const [arrayData, setArrayData] = useState<Booking[]>([]);
 
-  const tables = [];
-
-  useEffect(() => {
-    const fetchBooking = async (date: string, time: string) => {
-    try {
-      console.log("funkar det?");
-      const response = await get<Booking[]>(
-        API_BASE_URL + "booking/restaurant/" + restaurantID
-      );
-      console.log("Funkar det 2?", response.data);
-
-      setArrayData(response.data);
-
-      console.log("funkar det 3", arrayData);
-      
-
-    } catch (error) {
-      console.log("Error fetching bookings", error);
-    }
-  };
- 
- 
-   fetchBooking(date, time);
-
-  }, []);
-
- 
-
-  
+  // const tables = [];
 
   const handleSearch = async () => {
     try {
-      const bookings = await fetchBooking(date, time);
-
-      const filteredTables = bookings.filter(
+      console.log("Fetching the bookings....");
+      const response = await get<Booking[]>(
+        API_BASE_URL + "booking/restaurant/" + restaurantID
+      );
+      console.log("Fetched sucess???", response.data);
+      const fetchedTables = response.data.filter(
         (booking) => booking.time === time && booking.date === date
       );
-      setIsTablesAvailable(filteredTables);
-    } catch (error) {}
-    // if (date && time) {
-    //   setIsTablesAvailable(true);
-    // } else {
-    //   setIsTablesAvailable(false);
-    // }
-    // setIsSearching(false);
+      console.log("poopy", fetchedTables);
+      setIsTablesAvailable(fetchedTables.length < 15); // blir antingen true eller false.
+      setIsSearching(false);
+    } catch (error) {
+      console.log("error fetching bookings", error);
+    }
   };
 
   //ta bort select på e? har testat nu
@@ -149,19 +122,23 @@ export const BookingForm = () => {
     }
   };
 
+  if (isSeaching) {
+    return (
+      <SearchTable
+        onSearch={handleSearch}
+        date={date}
+        setDate={setDate}
+        time={time}
+        setTime={setTime}
+        persons={persons}
+        setPersons={setPersons}
+      />
+    );
+  }
+
   return (
     <>
-      {isSeaching ? (
-        <SearchTable
-          onSearch={handleSearch}
-          date={date}
-          setDate={setDate}
-          time={time}
-          setTime={setTime}
-          persons={persons}
-          setPersons={setPersons}
-        />
-      ) : isTablesAvailable ? (
+      {isTablesAvailable ? (
         <form onSubmit={handleForm}>
           <BookingInputs
             label="Förnamn:"

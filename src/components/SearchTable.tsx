@@ -54,10 +54,6 @@ export const SearchTable = ({
     }
   };
 
-  setDate("");
-  setTime("");
-  setPersons(1);
-
   return (
     <>
       <form onSubmit={handleForm}>
