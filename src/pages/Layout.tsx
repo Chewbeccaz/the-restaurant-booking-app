@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Navigation } from "../components/Navigation";
 // import "../styles/main.scss";
 import "./../styles/main.scss";
+import { Footer } from "../components/Footer";
 
 export const Layout = () => {
   return (
@@ -12,7 +13,7 @@ export const Layout = () => {
       <main>
         <Outlet />
       </main>
-      <footer> Social media stuff</footer>
+      <footer> < Footer /> </footer>
     </>
   );
 };
