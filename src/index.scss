@@ -33,7 +33,7 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  // font-size: 3.2em;
   font-family: "Abril Fatface", serif;
   text-transform: uppercase;
   color: #fff;
@@ -73,5 +73,33 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  h3 {
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  h2 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 1em;
   }
 }
