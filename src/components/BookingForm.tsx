@@ -16,7 +16,6 @@ export const BookingForm = () => {
   const [isSeaching, setIsSearching] = useState(true);
   const [isTablesAvailable, setIsTablesAvailable] = useState(false);
 
-
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [mail, setMail] = useState("");
@@ -28,37 +27,35 @@ export const BookingForm = () => {
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
 
+  const tables = [];
 
-  // export const fetchBooking = async () => {
-  //   try {
-  //     console.log("funkar det?");
-  //     const response = await get<Booking[]>(
-  //       API_BASE_URL + "booking/restaurant/" + restaurantID
-  //     );
-  //     console.log("Funkar det 2?", response.data);
-  //     return response.data;
-  //   } catch (error) {
-  //     console.log("Error fetching bookings", error);
-  //   }
-  // };
-
-  const handleSearch = async () => {
+  const fetchBooking = async (date: string, time: string) => {
     try {
       console.log("funkar det?");
-      const bookings = await get<Booking[]>(
+      const response = await get<Booking[]>(
         API_BASE_URL + "booking/restaurant/" + restaurantID
       );
-      console.log("Funkar det 2?", bookings.data);
+      console.log("Funkar det 2?", response.data);
     } catch (error) {
       console.log("Error fetching bookings", error);
     }
+  };
+
+  const handleSearch = async () => {
+    try {
+      const bookings = await fetchBooking(date, time);
+
+      const filteredTables = bookings.filter(
+        (booking) => booking.time === time && booking.date === date
+      );
+      setIsTablesAvailable(filteredTables);
+    } catch (error) {}
     // if (date && time) {
     //   setIsTablesAvailable(true);
     // } else {
     //   setIsTablesAvailable(false);
     // }
     // setIsSearching(false);
-
   };
 
   //ta bort select på e? har testat nu
