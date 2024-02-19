@@ -17,7 +17,35 @@
   text-align: center;
 }
 
+//Styling for the section
+
 .about-us {
-  margin-top: 400px;
+  margin-top: 300px;
   margin-bottom: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
+.about-us-text {
+  width: 60%;
+}
+
+.about-us-img {
+  width: 40%;
+  height: auto;
+}
+.about-us-img img {
+  width: 90%;
+}
+
+.border {
+  width: 50%;
+  height: 1px;
+  background-color: #b39c41;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  margin-left: auto;
+  margin-right: auto;
 }
