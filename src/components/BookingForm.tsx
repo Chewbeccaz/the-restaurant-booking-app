@@ -8,6 +8,8 @@ import { BookingValidation } from "./BookingValidation";
 import { getCurrentDate } from "./CurrentDate";
 
 import { makeBooking } from "../services/BookingService";
+import { BookingCheckbox } from "./BookingCheckbox";
+import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
 
 
 export const BookingForm = () => {
@@ -150,11 +152,10 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <BookingInputs
-          label="Antal personer:"
+        <BookingDateTimeGuests
+          label="Antal gäster:"
           id="personQuantity"
           name="personQuantity"
-          type="select"
           value={persons.toString()}
           options={Array.from({ length: 90 }, (_, i) => i + 1).map((i) => ({
             value: i.toString(),
@@ -163,7 +164,7 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <BookingInputs
+        <BookingDateTimeGuests
           label="Välj datum:"
           id="chooseDate"
           name="chooseDate"
@@ -173,11 +174,10 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <BookingInputs
+        <BookingDateTimeGuests
           label="Välj tid:"
           id="chooseTime"
           name="chooseTime"
-          type="select"
           value={time}
           options={[
             { value: "", text: "Tider" },
@@ -187,9 +187,9 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <BookingInputs
+        <BookingCheckbox
           label="Jag godkänner användarvillkoren"
-          id="GDPR"
+          id="checkbox"
           type="checkbox"
           checked={isChecked}
           onChange={handleCheckbox}
