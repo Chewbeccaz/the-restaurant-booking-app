@@ -5,7 +5,7 @@ export const ContactForm = () => {
 
   const handleClick = () => {
     if (inputFields[0].value === "" || inputFields[1].value === "" || inputFields[2].value === "") {
-      alert("Vänligen, fyll i alla fält!");
+      alert("Vänligen fyll i alla fält!");
       return false;
     }
     else {
@@ -17,7 +17,7 @@ return (
     <>
       <h4>Kontakta oss</h4>
 
-      <form>
+      <form className="contact-form">
         <input type="text" placeholder="Namn" />
         <input type="text" placeholder="Mailadress"/>
         <input type="text" placeholder="Skriv ditt meddelande här"/>

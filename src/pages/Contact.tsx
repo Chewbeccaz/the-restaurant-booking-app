@@ -21,13 +21,11 @@ export const Contact = () => {
     <>
       <div>
         <p className="name">{contact?.name}</p>
+        <p className="address"> {contact?.address}</p>
         <p className="address">
-          {contact?.address}
-          <p className="address">
             {contact?.zip}
             {contact?.city}
           </p>
-        </p>
       </div>
       <ContactForm />
     </>
