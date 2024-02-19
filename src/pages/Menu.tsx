@@ -9,7 +9,7 @@ export const Menu = () => {
       "Chianti",
       "Passande efterrätt",
       1991,
-      "//src/img/lambs.jpg"
+      "/src/img/lambs.jpg"
     ),
     new Food(
       "Gudfadern",
@@ -18,7 +18,7 @@ export const Menu = () => {
       "Bardolino",
       "Cannoli",
       1972,
-      "//src/img/maffia.jpg"
+      "/src/img/maffia.jpg"
     ),
     new Food(
       "Jurassic Park",
@@ -27,7 +27,7 @@ export const Menu = () => {
       "Perrier-Jouët Belle Époque",
       "Green jello",
       1993,
-      "//src/img/Dinos.jpg"
+      "/src/img/Dinos.jpg"
     ),
     new Food(
       "Stekta gröna tomater",
@@ -36,16 +36,15 @@ export const Menu = () => {
       "Budweiser",
       "Honungsmarinerade tomater",
       1991,
-      "//src/img/tomatoes.jpg"
+      "/src/img/tomatoes.jpg"
     ),
   ];
 
   const foods = dish.map((food, id) => {
     
     return (
-      <>
-        <section className="menuSection">
-          <div key={id} className="menu">
+        <section key={id} className="menuSection">
+          <div className="menu">
             <h3 className="foodName">{food.name}</h3>
             <p>Förrätt: {food.dishOne}</p>
             <p>Huvudrätt: {food.dishTwo}</p>
@@ -57,7 +56,6 @@ export const Menu = () => {
             <img className="foodImg" src={food.image} alt="food" />
           </div>
         </section>
-      </>
     );
   });
 
