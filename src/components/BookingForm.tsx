@@ -7,30 +7,37 @@ import { BookingValidation } from "./BookingValidation";
 
 // import { getCurrentDate } from "./CurrentDate";
 
-import { makeBooking } from "../services/BookingService";
+import { fetchBooking, makeBooking } from "../services/BookingService";
 import { BookingCheckbox } from "./BookingCheckbox";
+import { SearchTable } from "./SearchTable";
 // import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
 
-
 export const BookingForm = () => {
+  const [isSeaching, setIsSearching] = useState(false);
+  const [isTablesAvailable, setIsTablesAvailable] = useState(false);
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [mail, setMail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  // const [date, setDate] = useState("");
-  // const [time, setTime] = useState("");
-  // const [persons, setPersons] = useState(1);
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
 
+  const handleSearch = () => {
+    setIsSearching(true);
+    try {
+    } catch (error) {
+      console.log("Funkar inte", error);
+    }
+  };
 
-  //ta bort select på e?
+  //ta bort select på e? har testat nu
   const handleForm = (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLSelectElement>
-      | React.FormEvent<HTMLFormElement>
+    e: React.ChangeEvent<HTMLInputElement> | React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
 
@@ -89,12 +96,6 @@ export const BookingForm = () => {
         };
         await makeBooking(bookingData);
 
-        // const response = await axios.post(
-        //   "https://school-restaurant-api.azurewebsites.net/booking/create",
-        //   createBooking
-        // );
-        // console.log("Funkar", response.data);
-
         setFirstName("");
         setLastName("");
         setMail("");
@@ -117,6 +118,16 @@ export const BookingForm = () => {
 
   return (
     <>
+      <SearchTable
+        onSearch={handleSearch}
+        date={date}
+        setDate={setDate}
+        time={time}
+        setTime={setTime}
+        persons={persons}
+        setPersons={setPersons}
+      />
+
       <form onSubmit={handleForm}>
         <BookingInputs
           label="Förnamn:"

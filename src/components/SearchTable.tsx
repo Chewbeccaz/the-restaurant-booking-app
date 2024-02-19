@@ -2,14 +2,31 @@
 //  knapp sök bord
 // knapp med validering om bord finns
 
-import { useState } from "react";
 import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
 import { getCurrentDate } from "./CurrentDate";
 
-export const SeachTable = () => {
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [persons, setPersons] = useState(1);
+interface ISearchTable {
+    onSearch: () => void;
+    date: string;
+    setDate: (date: string) => void;
+    time: string;
+    setTime: (time: string) => void;
+    persons: number;
+    setPersons: (persons: number) => void;
+    
+}
+
+export const SearchTable = ({ onSearch,date, setDate, time, setTime, persons, setPersons }: ISearchTable) => {
+//   const [date, setDate] = useState("");
+//   const [time, setTime] = useState("");
+//   const [persons, setPersons] = useState(1);
+
+
+  const handleSearch = () => {
+    onSearch();
+  };
+
+
 
   const handleForm = (
     e:
@@ -82,6 +99,8 @@ export const SeachTable = () => {
           ]}
           onChange={handleForm}
         />
+
+        <button onClick={handleSearch}>Sök lediga bord</button>
       </form>
     </>
   );
