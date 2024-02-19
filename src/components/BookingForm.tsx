@@ -5,11 +5,11 @@ import { BookingFormError } from "./BookingFormError";
 import { BookingInputs } from "./BookingInputs";
 import { BookingValidation } from "./BookingValidation";
 
-import { getCurrentDate } from "./CurrentDate";
+// import { getCurrentDate } from "./CurrentDate";
 
 import { makeBooking } from "../services/BookingService";
 import { BookingCheckbox } from "./BookingCheckbox";
-import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
+// import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
 
 
 export const BookingForm = () => {
@@ -17,13 +17,15 @@ export const BookingForm = () => {
   const [lastName, setLastName] = useState("");
   const [mail, setMail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [persons, setPersons] = useState(1);
+  // const [date, setDate] = useState("");
+  // const [time, setTime] = useState("");
+  // const [persons, setPersons] = useState(1);
   const [isChecked, setIsChecked] = useState(false);
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
 
+
+  //ta bort select på e?
   const handleForm = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -51,15 +53,15 @@ export const BookingForm = () => {
         case "phoneNumber":
           setPhoneNumber(value);
           break;
-        case "chooseDate":
-          setDate(value);
-          break;
-        case "chooseTime":
-          setTime(value);
-          break;
-        case "personQuantity":
-          setPersons(Number(value));
-          break;
+        // case "chooseDate":
+        //   setDate(value);
+        //   break;
+        // case "chooseTime":
+        //   setTime(value);
+        //   break;
+        // case "personQuantity":
+        //   setPersons(Number(value));
+        //   break;
         default:
           break;
       }
@@ -97,9 +99,9 @@ export const BookingForm = () => {
         setLastName("");
         setMail("");
         setPhoneNumber("");
-        setDate("");
-        setTime("");
-        setPersons(1);
+        // setDate("");
+        // setTime("");
+        // setPersons(1);
         setIsChecked(false);
 
         setErrorValidation(false);
@@ -152,7 +154,7 @@ export const BookingForm = () => {
           onChange={handleForm}
         />
 
-        <BookingDateTimeGuests
+        {/* <BookingDateTimeGuests
           label="Antal gäster:"
           id="personQuantity"
           name="personQuantity"
@@ -185,7 +187,7 @@ export const BookingForm = () => {
             { value: "21:00", text: "21:00" },
           ]}
           onChange={handleForm}
-        />
+        /> */}
 
         <BookingCheckbox
           label="Jag godkänner användarvillkoren"
