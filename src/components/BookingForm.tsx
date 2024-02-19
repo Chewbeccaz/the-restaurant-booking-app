@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { restaurantID } from "../main";
 import { CreateBooking } from "../models/CreateBooking";
 import { BookingFormError } from "./BookingFormError";
@@ -27,19 +27,37 @@ export const BookingForm = () => {
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
 
+  const [arrayData, setArrayData] = useState<Booking[]>([]);
+
   const tables = [];
 
-  const fetchBooking = async (date: string, time: string) => {
+  useEffect(() => {
+    const fetchBooking = async (date: string, time: string) => {
     try {
       console.log("funkar det?");
       const response = await get<Booking[]>(
         API_BASE_URL + "booking/restaurant/" + restaurantID
       );
       console.log("Funkar det 2?", response.data);
+
+      setArrayData(response.data);
+
+      console.log("funkar det 3", arrayData);
+      
+
     } catch (error) {
       console.log("Error fetching bookings", error);
     }
   };
+ 
+ 
+   fetchBooking(date, time);
+
+  }, []);
+
+ 
+
+  
 
   const handleSearch = async () => {
     try {
