@@ -1,4 +1,5 @@
 import { AdminTable } from "../components/AdminTable";
+import "../styles/admin.css";
 
 export const Admin = () => {
   return (

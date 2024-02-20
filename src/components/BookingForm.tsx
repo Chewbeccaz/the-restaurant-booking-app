@@ -9,6 +9,7 @@ import { BookingCheckbox } from "./BookingCheckbox";
 import { SearchTable } from "./SearchTable";
 import { Booking } from "../models/Booking";
 import { get } from "../services/ServiceBase";
+import "../styles/bookingForm.css";
 
 const API_BASE_URL = "https://school-restaurant-api.azurewebsites.net/";
 
@@ -26,6 +27,7 @@ export const BookingForm = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
+  
 
   // const [arrayData, setArrayData] = useState<Booking[]>([]);
 
