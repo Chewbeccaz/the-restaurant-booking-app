@@ -11,4 +11,19 @@
 .bookings-table td {
   border: 1px solid ivory;
   padding: 16px;
+  color: ivory;
+}
+
+.delete-btn {
+  background-color: #040404d1;
+  color: #b39c41;
+  border: 1px solid #b39c41;
+  margin: 8px;
+}
+
+.update-btn {
+  background-color: #040404d1;
+  color: #b39c41;
+  border: 1px solid #b39c41;
+  margin: 8px;
 }
