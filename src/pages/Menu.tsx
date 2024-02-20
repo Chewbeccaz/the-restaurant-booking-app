@@ -1,4 +1,5 @@
 import { Food } from "../models/MenuClass";
+import "../styles/menu.css";
 
 export const Menu = () => {
   const dish: Food[] = [

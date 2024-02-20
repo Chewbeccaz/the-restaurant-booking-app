@@ -1,5 +1,5 @@
 form {
-  border: 2px solid wheat;
+  /* border: 2px solid wheat; */
   
   
 }
@@ -15,7 +15,7 @@ form {
     
     margin-top: 20px;
     color: #b39c41;
-    border: 5px #b39c41; //blir ju för fan ingen border
+    border: 5px #b39c41;
     background-color: #040404;
    
 }
