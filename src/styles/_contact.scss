@@ -1,12 +1,10 @@
-
-
 .contactName {
   font-size: 20px;
   color: #b39c41;
 }
 
 .contactAddress {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .contactContainer {
@@ -15,13 +13,14 @@
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  flex-wrap: wrap;
   padding: 20px;
 }
 
 .contactInfo {
   display: block;
   margin: 20px;
-  width: 48%;
+  //width: 48%;
   text-align: center;
   align-content: center;
 }
@@ -36,12 +35,24 @@
 
 .contactHead {
   color: #b39c41;
-  font-size: 20px;
+  font-size: 26px;
 }
 
-input {
-  height: 20px;
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
 
+.nameInput, .mailInput, .messageInput {
+  width: 20%;
+  margin: 5px;
+  height: 30px;
+}
+
+.messageInput {
+  height: 100px;
 }
 
 .contactImgDiv {
@@ -52,16 +63,11 @@ input {
   width: 50%;
 }
 
-.cfContainer {
-  display: flex;
-  flex-direction: column;
-}
-
 .contactButton {
   background-color: black;
   color:#b39c41;
   border: 1px solid #b39c41;
-  
+  margin: 5px;
 }
 
 .contactButton:hover {
