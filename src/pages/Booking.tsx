@@ -3,7 +3,7 @@ import { BookingForm } from "../components/BookingForm";
 export const Booking = () => {
   return (
     <>
-      <h1>Booking</h1>
+      {/* <h2>Booking</h2> */}
       <BookingForm />
     </>
   );

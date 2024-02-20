@@ -124,6 +124,8 @@ export const BookingForm = () => {
 
   if (isSeaching) {
     return (
+      <>
+      <h2 id="bookingText">Booking</h2>
       <SearchTable
         onSearch={handleSearch}
         date={date}
@@ -133,13 +135,17 @@ export const BookingForm = () => {
         persons={persons}
         setPersons={setPersons}
       />
+      </>
     );
   }
 
   return (
     <>
+    
       {isTablesAvailable ? (
-        <form onSubmit={handleForm}>
+        <>
+        <h2 id="bookingText">Booking</h2>
+        <form className="bookingForm" onSubmit={handleForm}>
           <BookingInputs
             label="Förnamn:"
             id="firstName"
@@ -201,6 +207,7 @@ export const BookingForm = () => {
 
           <BookingFormError errorValidation={errorValidation} />
         </form>
+        </>
       ) : (
         <p>Tyvärr finns inga lediga bord</p>
       )}
