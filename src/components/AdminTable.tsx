@@ -39,6 +39,8 @@ export const AdminTable = () => {
     <>
       <BookingForm />
 
+      {isLoading && <div className="loader"></div>}
+
       <table className="bookings-table">
         <thead>
           <tr>
