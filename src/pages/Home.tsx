@@ -1,5 +1,6 @@
+import { NavLink } from "react-router-dom";
 import bgImage from "../img/examplebg.jpg";
-import dinoScreen from "../img/dinoscreen.jpg";
+import servingImg from "../img/serving.jpg";
 import "../styles/home.css";
 
 export const Home = () => {
@@ -16,10 +17,15 @@ export const Home = () => {
         <div className="about-us-text">
           <h2>Upptäck vårt unika koncept av filmisk gastronomi.</h2>
           <div className="border"></div>
-          <button>Meny</button>
+          <button className="menu-btn">
+            <NavLink to="/menu">MENY</NavLink>
+          </button>
+          <button className="booking-btn">
+            <NavLink to="/booking">BOKA</NavLink>
+          </button>
         </div>
         <div className="about-us-img">
-          <img src={dinoScreen} alt="moviescreen-dino"></img>
+          <img src={servingImg} alt="moviescreen-dino"></img>
         </div>
       </section>
     </>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
 .header-container {
   position: relative;
   width: 100%;
@@ -20,10 +22,11 @@
 }
 
 .text-container h1 {
-  margin-top: 200px;
+  margin-top: 250px;
+  color: ivory;
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
 }
-
-
 
 .about-us {
   margin-top: 300px;
@@ -31,11 +34,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90%;
+  width: 100%;
 }
 
 .about-us-text {
   width: 60%;
+}
+.about-us-text h2 {
+  color: ivory;
+  font-family: "Playfair Display", serif;
 }
 
 .about-us-img {
@@ -54,6 +61,34 @@
   margin-top: 70px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.menu-btn {
+  background-color: #040404cb;
+  color: #b39c41;
+  border: 1px solid #b39c41;
+  margin: 8px;
+}
+
+.menu.btn:hover {
+  background-color: #b39c41;
+  color: black;
+  border: #b39c41;
+  text-decoration: underline;
+}
+
+.booking-btn {
+  background-color: #040404cb;
+  color: #b39c41;
+  border: 1px solid #b39c41;
+  margin: 8px;
+}
+
+.booking-btn:hover {
+  background-color: #b39c41;
+  color: black;
+  border: #b39c41;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 768px) {
