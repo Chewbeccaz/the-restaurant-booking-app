@@ -58,48 +58,46 @@ export const SearchTable = ({
   return (
     <>
       <form className="searchForm" onSubmit={handleForm}>
-        <div className="inputs">
-          <BookingDateTimeGuests
-            label="Antal gäster:"
-            id="personQuantity"
-            name="personQuantity"
-            value={persons.toString()}
-            options={Array.from({ length: 90 }, (_, i) => i + 1).map((i) => ({
-              value: i.toString(),
-              text: i.toString(),
-            }))}
-            onChange={handleForm}
-          />
+        <div className="searchParentDiv">
+          <div className="searchInputs">
+            <BookingDateTimeGuests
+              label="Antal gäster:"
+              id="personQuantity"
+              name="personQuantity"
+              value={persons.toString()}
+              options={Array.from({ length: 90 }, (_, i) => i + 1).map((i) => ({
+                value: i.toString(),
+                text: i.toString(),
+              }))}
+              onChange={handleForm}
+            />
 
-          <BookingDateTimeGuests
-            label="Välj datum:"
-            id="chooseDate"
-            name="chooseDate"
-            type="date"
-            min={getCurrentDate()}
-            value={date}
-            onChange={handleForm}
-          />
+            <BookingDateTimeGuests
+              label="Välj datum:"
+              id="chooseDate"
+              name="chooseDate"
+              type="date"
+              min={getCurrentDate()}
+              value={date}
+              onChange={handleForm}
+            />
 
-          <BookingDateTimeGuests
-            label="Välj tid:"
-            id="chooseTime"
-            name="chooseTime"
-            value={time}
-            options={[
-              { value: "", text: "Tider" },
-              { value: "18:00", text: "18:00" },
-              { value: "21:00", text: "21:00" },
-            ]}
-            onChange={handleForm}
-          />
-
-          <div>
-            <button id="btn" onClick={handleSearch}>
-              Sök lediga bord
-            </button>
+            <BookingDateTimeGuests
+              label="Välj tid:"
+              id="chooseTime"
+              name="chooseTime"
+              value={time}
+              options={[
+                { value: "", text: "Tider" },
+                { value: "18:00", text: "18:00" },
+                { value: "21:00", text: "21:00" },
+              ]}
+              onChange={handleForm}
+            />
           </div>
-
+          <div id="searchBtn">
+            <button onClick={handleSearch}>Sök lediga bord</button>
+          </div>
         </div>
       </form>
     </>
