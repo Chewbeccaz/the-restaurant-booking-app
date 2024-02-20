@@ -41,7 +41,7 @@ export const BookingForm = () => {
       const fetchedTables = response.data.filter(
         (booking) => booking.time === time && booking.date === date
       );
-      console.log("poopy", fetchedTables);
+      console.log("funkadee", fetchedTables);
       setIsTablesAvailable(fetchedTables.length < 15); // blir antingen true eller false.
       setIsSearching(false);
     } catch (error) {
