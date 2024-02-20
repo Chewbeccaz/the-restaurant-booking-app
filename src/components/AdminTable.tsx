@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Booking } from "../models/Booking";
 import { AdminTableRow } from "./AdminTableRow";
 import { fetchBooking } from "../services/BookingService";
+import { BookingForm } from "./BookingForm";
 
 export const AdminTable = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -36,6 +37,8 @@ export const AdminTable = () => {
 
   return (
     <>
+      <BookingForm />
+
       <table className="bookings-table">
         <thead>
           <tr>
