@@ -3,6 +3,7 @@ import axios from "axios";
 import { restaurantID } from "../main";
 import { useState } from "react";
 import { ContactForm } from "../components/ContactForm";
+import "../styles/contact.css";
 
 export const Contact = () => {
   const [contact, setContact] = useState<ContactClass>();

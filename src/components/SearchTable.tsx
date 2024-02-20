@@ -1,5 +1,6 @@
 import { BookingDateTimeGuests } from "./BookingDateTimeGuests";
 import { getCurrentDate } from "./CurrentDate";
+import "../styles/searchTable.css";
 
 interface ISearchTable {
   onSearch: () => void;

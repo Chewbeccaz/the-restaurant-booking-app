@@ -1,5 +1,6 @@
 import bgImage from "../img/examplebg.jpg";
 import dinoScreen from "../img/dinoscreen.jpg";
+import "../styles/home.css";
 
 export const Home = () => {
   return (
