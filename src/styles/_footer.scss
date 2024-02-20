@@ -1,0 +1,36 @@
+.footer {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.icon {
+    width: 40px;
+}
+
+.iconContainer {
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
+    align-self: center;
+}
+
+.openingHours {
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.openingHoursText {
+    color: #b39c41;
+    font-size: 18px;
+    margin: 5px;
+}
+
+.copyrightDiv {
+    align-self: center;
+}
+
+.copyright {
+    color: #b39c41;
+}
