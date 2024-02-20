@@ -125,88 +125,97 @@ export const BookingForm = () => {
   if (isSeaching) {
     return (
       <>
-      <h2 id="bookingText">Booking</h2>
-      <SearchTable
-        onSearch={handleSearch}
-        date={date}
-        setDate={setDate}
-        time={time}
-        setTime={setTime}
-        persons={persons}
-        setPersons={setPersons}
-      />
+        <h2 id="bookingText">Booking</h2>
+        <SearchTable
+          onSearch={handleSearch}
+          date={date}
+          setDate={setDate}
+          time={time}
+          setTime={setTime}
+          persons={persons}
+          setPersons={setPersons}
+        />
       </>
     );
   }
 
   return (
     <>
-    
       {isTablesAvailable ? (
         <>
-        <h2 id="bookingText">Booking</h2>
-        <form className="bookingForm" onSubmit={handleForm}>
-          <BookingInputs
-            label="Förnamn:"
-            id="firstName"
-            name="firstName"
-            type="text"
-            value={firstName}
-            onChange={handleForm}
-          />
+          <h2 id="bookingText">Booking</h2>
 
-          <BookingInputs
-            label="Efternamn:"
-            id="lastName"
-            name="lastName"
-            type="text"
-            value={lastName}
-            onChange={handleForm}
-          />
+          <form className="bookingForm" onSubmit={handleForm}>
+            <div className="bookingParentdiv">
+              <div className="bookingInputs">
+                <div className="inputDiv1">
+              <BookingInputs
+                label="Förnamn:"
+                id="firstName"
+                name="firstName"
+                type="text"
+                value={firstName}
+                onChange={handleForm}
+              />
 
-          <BookingInputs
-            label="Mail:"
-            id="mail"
-            name="mail"
-            type="text"
-            value={mail}
-            onChange={handleForm}
-          />
+              <BookingInputs
+                label="Efternamn:"
+                id="lastName"
+                name="lastName"
+                type="text"
+                value={lastName}
+                onChange={handleForm}
+              />
+              </div>
+              <div className="inputDiv2">
+              <BookingInputs
+                label="Mail:"
+                id="mail"
+                name="mail"
+                type="text"
+                value={mail}
+                onChange={handleForm}
+              />
 
-          <BookingInputs
-            label="Telefonnummer:"
-            id="phoneNumber"
-            name="phoneNumber"
-            type="number"
-            value={phoneNumber}
-            onChange={handleForm}
-          />
+              <BookingInputs
+                label="Telefonnummer:"
+                id="phoneNumber"
+                name="phoneNumber"
+                type="number"
+                value={phoneNumber}
+                onChange={handleForm}
+              />
+              </div>
+              <div className="inputDiv3">
+              <BookingCheckbox
+                label="Jag godkänner användarvillkoren:"
+                id="checkbox"
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckbox}
+              />
+              </div>
 
-          <BookingCheckbox
-            label="Jag godkänner användarvillkoren"
-            id="checkbox"
-            type="checkbox"
-            checked={isChecked}
-            onChange={handleCheckbox}
-          />
+              <BookingValidation
+                formInputs={{
+                  firstName,
+                  lastName,
+                  mail,
+                  phoneNumber,
+                  date,
+                  time,
+                  isChecked,
+                }}
+                setFormValidation={setFormValidation}
+              />
+              </div>
 
-          <BookingValidation
-            formInputs={{
-              firstName,
-              lastName,
-              mail,
-              phoneNumber,
-              date,
-              time,
-              isChecked,
-            }}
-            setFormValidation={setFormValidation}
-          />
-
-          <button onClick={handleBooking}>Boka</button>
-
-          <BookingFormError errorValidation={errorValidation} />
-        </form>
+              <div className="bookingBtn">
+                <button onClick={handleBooking}>Boka</button>
+              </div>
+              <BookingFormError errorValidation={errorValidation} />
+            </div>
+          </form>
         </>
       ) : (
         <p>Tyvärr finns inga lediga bord</p>

@@ -21,7 +21,7 @@ return (
         <input className="nameInput" type="text" placeholder="Namn" />
         <input className="mailInput" type="text" placeholder="Mailadress"/>
         <input className="messageInput" type="text" placeholder="Skriv ditt meddelande här"/>
-        <button className="contactButton" onClick={handleClick}>Skicka</button>
+        <button onClick={handleClick}>Skicka</button>
       </form>
     </>
   );

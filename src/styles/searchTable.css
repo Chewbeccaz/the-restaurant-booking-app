@@ -1,29 +1,149 @@
 .searchForm {
   min-height: 70vh;
-  
+  /* margin-top: 100px;
+  margin-bottom: 100px; */
 }
 
-.bookingForm{
+.bookingForm {
   min-height: 70vh;
+  /* margin-top: 100px;
+  margin-bottom: 100px; */
 }
 
-.inputs {
+.searchParentDiv {
+  font-size: 1.3rem;
+  background-color: #242424;
 
-    font-size: 1.2rem;
-    color: #b39c41;
-    border: 1px solid red;
+  min-height: 100px;
+  padding: 40px;
+  border-radius: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
+.bookingParentdiv {
+  font-size: 1.3rem;
+  color: #b39c41;
+  background-color: #242424;
 
-#btn {
-    
-    margin-top: 20px;
-    color: #b39c41;
-    border: 1px solid #b39c41;
-    background-color: #040404;
-   
+  min-height: 100px;
+  padding: 40px;
+  border-radius: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.inputDiv1 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.inputDiv2 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.inputDiv3 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+#searchBtn {
+  font-size: 1.2rem;
+  margin-top: 30px;
+}
+#bookingBtn {
+  font-size: 1.2rem;
+  margin-top: 30px;
 }
 
 #bookingText {
   margin-top: 50px;
+  font-size: 2rem;
+}
+
+#personQuantity,
+#chooseDate,
+#chooseTime {
+  font-size: 1rem;
+  margin-left: 10px;
+  margin-right: 20px;
+  background-color: ivory;
+  height: 25px;
+}
+
+#firstName,
+#lastName,
+#mail,
+#phoneNumber,
+#checkbox {
+  font-size: 1rem;
+  margin-left: 10px;
+  margin-right: 20px;
+  background-color: ivory;
+  height: 17px;
+  margin-top: 5px;
+}
+
+#checkbox {
+  margin-top: 9px;
+  width: 17px;
+}
+
+input[type="checkbox"] {
+  accent-color: #b39c41;
+}
+
+@media screen and (max-width: 768px) {
+  .searchParentDiv {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .searchInputs {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bookingParentDiv {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bookingInputs {
+    display: flex;
+    flex-direction: column;
+
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .inputDiv1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .inputDiv2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #firstName,
+  #lastName,
+  #mail,
+  #phoneNumber {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
 }
