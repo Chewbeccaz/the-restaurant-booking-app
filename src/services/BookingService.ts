@@ -3,6 +3,7 @@ import { Booking } from "../models/Booking";
 import { CreateBooking } from "../models/CreateBooking";
 import { get, post, put } from "./ServiceBase";
 import { UpdateBooking } from "../models/UpdateBooking";
+import { CustomerInfo } from "../models/CustomerInfo";
 
 const API_BASE_URL = "https://school-restaurant-api.azurewebsites.net/";
 
@@ -42,5 +43,16 @@ export const updateBooking = async (id: string, updateData: UpdateBooking) => {
     console.log("Funkar det 2?", response.data);
   } catch (error) {
     console.log("Error updating bookings", error);
+  }
+};
+
+export const getCustomerInfo = async (id: string) => {
+  try {
+    console.log("customer 1");
+    const response = await get<CustomerInfo>(`${API_BASE_URL}/customer/${id}`);
+    console.log("customer 2?", response.data);
+    return response.data;
+  } catch (error) {
+    console.log("Error fetching customer", error);
   }
 };
