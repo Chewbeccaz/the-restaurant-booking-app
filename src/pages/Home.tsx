@@ -1,5 +1,5 @@
 import bgImage from "../img/examplebg.jpg";
-import dinoScreen from "../img/dinoscreen.jpg";
+import servingImg from "../img/serving.jpg";
 import "../styles/home.css";
 
 export const Home = () => {
@@ -19,7 +19,7 @@ export const Home = () => {
           <button>Meny</button>
         </div>
         <div className="about-us-img">
-          <img src={dinoScreen} alt="moviescreen-dino"></img>
+          <img src={servingImg} alt="moviescreen-dino"></img>
         </div>
       </section>
     </>
