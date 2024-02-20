@@ -1,13 +1,17 @@
-form {
-  /* border: 2px solid wheat; */
+.searchForm {
+  min-height: 70vh;
   
-  
+}
+
+.bookingForm{
+  min-height: 70vh;
 }
 
 .inputs {
 
     font-size: 1.2rem;
     color: #b39c41;
+    border: 1px solid red;
 }
 
 
@@ -15,7 +19,11 @@ form {
     
     margin-top: 20px;
     color: #b39c41;
-    border: 5px #b39c41;
+    border: 1px solid #b39c41;
     background-color: #040404;
    
+}
+
+#bookingText {
+  margin-top: 50px;
 }

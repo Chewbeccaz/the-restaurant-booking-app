@@ -57,7 +57,8 @@ export const SearchTable = ({
 
   return (
     <>
-      <form onSubmit={handleForm}>
+    
+      <form className="searchForm" onSubmit={handleForm}>
         <div className="inputs">
         <BookingDateTimeGuests
           label="Antal gäster:"
