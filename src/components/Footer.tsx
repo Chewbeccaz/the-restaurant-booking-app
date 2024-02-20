@@ -15,8 +15,8 @@ export const Footer = () => {
                 <p className="openingHoursText">Våra öppettider är:</p>
                 <p className="openingHoursText">Alla dagar i veckan 17:00 - 24:00</p>
             </div>
-            <div className="copyrightDiv">
-                <p className="copyright">Copyright 2024</p>
+            <div className="copyright">
+                <p>Copyright 2024</p>
             </div>
         </footer>
     );
