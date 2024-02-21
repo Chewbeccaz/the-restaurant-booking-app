@@ -63,7 +63,7 @@
   margin-right: auto;
 }
 
-.menu-btn {
+/* .menu-btn {
   background-color: #040404cb;
   color: #b39c41;
   border: 1px solid #b39c41;
@@ -89,7 +89,7 @@
   color: black;
   border: #b39c41;
   text-decoration: underline;
-}
+} */
 
 @media screen and (max-width: 768px) {
   .about-us-img {
