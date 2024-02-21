@@ -1,7 +1,8 @@
 .bookings-table {
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
   border-collapse: collapse;
-  margin-top: 40px;
+  margin-top: -200px;
   border-left: 1px solid ivory;
   border-right: 1px solid ivory;
   border-bottom: 1px solid ivory;
@@ -41,5 +42,37 @@
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .bookings-table {
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+
+  .bookings-table th {
+    display: none;
+  }
+
+  .bookings-table td {
+    padding: 12px;
+    border-top: none;
+  }
+
+  .bookings-table tr {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    border-bottom: none;
+  }
+
+  .bookings-table tr td:first-child {
+    border-top: 1px solid ivory;
+  }
+
+  .bookings-table tr > * {
+    flex: 1 0 50%;
   }
 }
