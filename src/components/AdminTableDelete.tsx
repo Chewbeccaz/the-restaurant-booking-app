@@ -26,8 +26,6 @@ export const AdminTableDelete = ({ id, onDelete }: DeleteButtonProps) => {
 
   return (
     <>
-      {/* <button onClick={handleDelete}>Radera</button> */}
-      {/* Gör en "spinner av detta..? Annars vanlig knapp." */}
       <button
         className="delete-btn"
         disabled={isDeleting}

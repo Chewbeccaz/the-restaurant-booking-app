@@ -1,13 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 
 :root {
-  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 200;
 
-  /* color-scheme: light dark; */
-  /* color: rgba(255, 255, 255, 0.87); */
-  /* background-color: #242424; */
   background-color: #040404d1;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -32,7 +28,6 @@ body {
   min-height: 100vh;
 
   background-color: #040404d1;
-
 }
 
 h1 {
@@ -80,19 +75,6 @@ p {
 label {
   color: #b39c41;
 }
-/* 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: ivory;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #b39c41;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
 
 @media screen and (max-width: 768px) {
   h1 {

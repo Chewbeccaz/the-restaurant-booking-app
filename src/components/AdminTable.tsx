@@ -8,7 +8,6 @@ export const AdminTable = () => {
   const [bookings, setBookings] = useState<Booking[]>([]);
 
   const deleteBooking = (id: string) => {
-    // Tar bort alla med det valda id:t.
     const remainingBookings = bookings.filter((booking) => booking._id !== id);
     setBookings(remainingBookings);
   };

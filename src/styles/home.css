@@ -63,34 +63,6 @@
   margin-right: auto;
 }
 
-/* .menu-btn {
-  background-color: #040404cb;
-  color: #b39c41;
-  border: 1px solid #b39c41;
-  margin: 8px;
-}
-
-.menu.btn:hover {
-  background-color: #b39c41;
-  color: black;
-  border: #b39c41;
-  text-decoration: underline;
-}
-
-.booking-btn {
-  background-color: #040404cb;
-  color: #b39c41;
-  border: 1px solid #b39c41;
-  margin: 8px;
-}
-
-.booking-btn:hover {
-  background-color: #b39c41;
-  color: black;
-  border: #b39c41;
-  text-decoration: underline;
-} */
-
 @media screen and (max-width: 768px) {
   .about-us-img {
     width: 60%;

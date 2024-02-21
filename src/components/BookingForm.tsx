@@ -28,10 +28,6 @@ export const BookingForm = () => {
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
 
-  // const [arrayData, setArrayData] = useState<Booking[]>([]);
-
-  // const tables = [];
-
   const handleSearch = async () => {
     try {
       console.log("Fetching the bookings....");
@@ -50,7 +46,6 @@ export const BookingForm = () => {
     }
   };
 
-  //ta bort select på e? har testat nu
   const handleForm = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -105,7 +100,6 @@ export const BookingForm = () => {
           },
         };
         await makeBooking(bookingData);
-        // const bookingInfo = bookingData.date + " " + bookingData.time;
         const newBookingInfo = `${date} ${time}`;
         setBookingInfo(newBookingInfo);
 

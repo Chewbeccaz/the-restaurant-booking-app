@@ -14,7 +14,6 @@ interface AdminTableRowProps {
   onUpdate: () => void;
 }
 
-//Destructuring (Slippa skriva props.booking)
 export const AdminTableRow = ({
   booking,
   children,
@@ -64,7 +63,6 @@ export const AdminTableRow = ({
           <td>{booking.date}</td>
           <td>{booking.time}</td>
           <td>{booking.numberOfGuests}</td>
-          {/* <td>{`${customer.name} ${customer.lastname}, ${customer.email}, ${customer.phone}`}</td> */}
           <td>
             {customer && (
               <>
