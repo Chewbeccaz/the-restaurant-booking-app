@@ -1,26 +1,10 @@
 .searchForm {
-  min-height: 70vh;
-  /* margin-top: 100px;
-  margin-bottom: 100px; */
+  min-height: 60vh;
 }
 
 .bookingForm {
   min-height: 70vh;
-  /* margin-top: 100px;
-  margin-bottom: 100px; */
 }
-
-/* Här är din gamla kod, nedaför ändrade jag bara margin-left/right och width. */
-/* .searchParentDiv {
-  font-size: 1.3rem;
-  background-color: #242424;
-
-  min-height: 100px;
-  padding: 40px;
-  border-radius: 20px;
-  margin-left: 30px;
-  margin-right: 30px;
-} */
 
 .searchParentDiv {
   font-size: 1.3rem;
@@ -42,8 +26,9 @@
   min-height: 100px;
   padding: 40px;
   border-radius: 20px;
-  margin-left: 30px;
-  margin-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
 }
 
 .inputDiv1 {
@@ -130,6 +115,7 @@ input[type="checkbox"] {
   .bookingParentDiv {
     display: flex;
     flex-direction: column;
+    width: 60%;
   }
 
   .bookingInputs {

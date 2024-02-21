@@ -15,6 +15,7 @@ const API_BASE_URL = "https://school-restaurant-api.azurewebsites.net/";
 export const BookingForm = () => {
   const [isSeaching, setIsSearching] = useState(true);
   const [isTablesAvailable, setIsTablesAvailable] = useState(false);
+  const [bookingInfo, setBookingInfo] = useState("");
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -26,10 +27,6 @@ export const BookingForm = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [formValidation, setFormValidation] = useState(false);
   const [errorValidation, setErrorValidation] = useState(false);
-
-  // const [arrayData, setArrayData] = useState<Booking[]>([]);
-
-  // const tables = [];
 
   const handleSearch = async () => {
     try {
@@ -49,7 +46,6 @@ export const BookingForm = () => {
     }
   };
 
-  //ta bort select på e? har testat nu
   const handleForm = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -104,6 +100,8 @@ export const BookingForm = () => {
           },
         };
         await makeBooking(bookingData);
+        const newBookingInfo = `${date} ${time}`;
+        setBookingInfo(newBookingInfo);
 
         setFirstName("");
         setLastName("");
@@ -149,65 +147,65 @@ export const BookingForm = () => {
             <div className="bookingParentdiv">
               <div className="bookingInputs">
                 <div className="inputDiv1">
-              <BookingInputs
-                label="Förnamn:"
-                id="firstName"
-                name="firstName"
-                type="text"
-                value={firstName}
-                onChange={handleForm}
-              />
+                  <BookingInputs
+                    label="Förnamn:"
+                    id="firstName"
+                    name="firstName"
+                    type="text"
+                    value={firstName}
+                    onChange={handleForm}
+                  />
 
-              <BookingInputs
-                label="Efternamn:"
-                id="lastName"
-                name="lastName"
-                type="text"
-                value={lastName}
-                onChange={handleForm}
-              />
-              </div>
-              <div className="inputDiv2">
-              <BookingInputs
-                label="Mail:"
-                id="mail"
-                name="mail"
-                type="text"
-                value={mail}
-                onChange={handleForm}
-              />
+                  <BookingInputs
+                    label="Efternamn:"
+                    id="lastName"
+                    name="lastName"
+                    type="text"
+                    value={lastName}
+                    onChange={handleForm}
+                  />
+                </div>
+                <div className="inputDiv2">
+                  <BookingInputs
+                    label="Mailadress:"
+                    id="mail"
+                    name="mail"
+                    type="text"
+                    value={mail}
+                    onChange={handleForm}
+                  />
 
-              <BookingInputs
-                label="Telefonnummer:"
-                id="phoneNumber"
-                name="phoneNumber"
-                type="number"
-                value={phoneNumber}
-                onChange={handleForm}
-              />
-              </div>
-              <div className="inputDiv3">
-              <BookingCheckbox
-                label="Jag godkänner användarvillkoren:"
-                id="checkbox"
-                type="checkbox"
-                checked={isChecked}
-                onChange={handleCheckbox}
-              />
-              </div>
+                  <BookingInputs
+                    label="Tlfnummer:"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    type="number"
+                    value={phoneNumber}
+                    onChange={handleForm}
+                  />
+                </div>
+                <div className="inputDiv3">
+                  <BookingCheckbox
+                    label="Jag godkänner användarvillkoren:"
+                    id="checkbox"
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheckbox}
+                  />
+                </div>
 
-              <BookingValidation
-                formInputs={{
-                  firstName,
-                  lastName,
-                  mail,
-                  phoneNumber,
-                  date,
-                  time,
-                  isChecked,
-                }}
-                setFormValidation={setFormValidation}
-              />
+                <BookingValidation
+                  formInputs={{
+                    firstName,
+                    lastName,
+                    mail,
+                    phoneNumber,
+                    date,
+                    time,
+                    isChecked,
+                  }}
+                  setFormValidation={setFormValidation}
+                />
               </div>
 
               <div className="bookingBtn">
@@ -216,6 +214,11 @@ export const BookingForm = () => {
               <BookingFormError errorValidation={errorValidation} />
             </div>
           </form>
+          {bookingInfo && (
+            <p style={{ marginBottom: "50px" }}>
+              Tack för din bokning, du är välkommen {bookingInfo}
+            </p>
+          )}
         </>
       ) : (
         <p>Tyvärr finns inga lediga bord</p>
