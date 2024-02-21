@@ -221,7 +221,9 @@ export const BookingForm = () => {
             </div>
           </form>
           {bookingInfo && (
-            <p>Tack för din bokning, du är välkommen {bookingInfo}</p>
+            <p style={{ marginBottom: "50px" }}>
+              Tack för din bokning, du är välkommen {bookingInfo}
+            </p>
           )}
         </>
       ) : (
