@@ -173,7 +173,7 @@ export const BookingForm = () => {
                 </div>
                 <div className="inputDiv2">
                   <BookingInputs
-                    label="Mail:"
+                    label="Mailadress:"
                     id="mail"
                     name="mail"
                     type="text"
@@ -182,7 +182,7 @@ export const BookingForm = () => {
                   />
 
                   <BookingInputs
-                    label="Telefonnummer:"
+                    label="Tlfnummer:"
                     id="phoneNumber"
                     name="phoneNumber"
                     type="number"
