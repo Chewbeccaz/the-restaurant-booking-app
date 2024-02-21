@@ -9,10 +9,8 @@
 
 .contactContainer {
   display: flex;
-  width: 100%;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
   flex-wrap: wrap;
   padding: 20px;
 }
@@ -20,16 +18,17 @@
 .contactInfo {
   display: block;
   margin: 20px;
-  text-align: center;
-  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .contactImg2 {
-  width: 50%;
+  width: 100%;
 }
 
 .contactImg2Div {
-  width: 48%;
+  width: 25%;
+  margin: 20px;
 }
 
 .contactHead {
@@ -41,13 +40,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 20px;
 }
 
 .nameInput, .mailInput, .messageInput {
-  width: 20%;
   margin: 5px;
-  height: 30px;
+  width: 300px;
 }
 
 .messageInput {
@@ -61,17 +60,3 @@
 .contactImg {
   width: 50%;
 }
-
-/* .contactButton {
-  background-color: black;
-  color:#b39c41;
-  border: 1px solid #b39c41;
-  margin: 5px;
-}
-
-.contactButton:hover {
-  background-color: #b39c41;
-  color: black;
-  border: #b39c41;
-  text-decoration: underline;
-} */
