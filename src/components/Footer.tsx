@@ -4,7 +4,7 @@ import "../styles/footer.css";
 export const Footer = () => {
     return (
         <footer className="footer">
-            <div className="iconContainer">
+            <div>
                 <a href="https://www.facebook.com/" ><img className="icon" src="/src/img/icon-fb.svg" alt="facebook"/></a>
                 <a href="https://www.linkedin.com/" ><img className="icon" src="/src/img/linkedinicon.svg" alt="linkedin"/></a>
                 <a href="https://www.instagram.com/" ><img className="icon" src="/src/img/instaicon.svg" alt="instagram"/></a>
@@ -15,8 +15,8 @@ export const Footer = () => {
                 <p className="openingHoursText">Våra öppettider är:</p>
                 <p className="openingHoursText">Alla dagar i veckan 17:00 - 24:00</p>
             </div>
-            <div className="copyright">
-                <p>Copyright 2024</p>
+            <div>
+                <p className="copyrightText">Copyright 2024</p>
             </div>
         </footer>
     );
