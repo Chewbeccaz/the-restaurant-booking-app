@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { restaurantID } from "../main";
 import { updateBooking } from "../services/BookingService";
+import "../styles/adminTableUpdate.css";
 
 interface UpdateButtonProps {
   id: string;
