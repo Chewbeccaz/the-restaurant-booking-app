@@ -20,7 +20,7 @@ export const Contact = () => {
   }
   return (
     <>
-      <div className="contactImgDiv"><img className="contactImg" src="/src/img/building.jpg" alt="find us"/></div>
+      <div className="contactImgDiv"><img className="contactImg" src="/src/img/dinoscreen.jpg" alt="A T-rex showing on a big screen"/></div>
       <ContactForm />
       <div className="contactContainer">
         <div className="contactInfo"><p className="contactName">{contact?.name}</p>
@@ -29,7 +29,7 @@ export const Contact = () => {
           {contact?.zip} {contact?.city}
           </p>
           </div>
-          <div className="contactImg2Div"><img className="contactImg2" src="/src/img/scream.jpg" alt="find us"/></div>
+          <div className="contactImg2Div"><img className="contactImg2" src="/src/img/scream.jpg" alt="Find us"/></div>
         
       </div>
     </>
