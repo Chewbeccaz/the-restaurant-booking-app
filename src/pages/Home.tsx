@@ -17,15 +17,11 @@ export const Home = () => {
         <div className="about-us-text">
           <h2>Upptäck vårt unika koncept av filmisk gastronomi.</h2>
           <div className="border"></div>
-          <button className="menu-btn">
-            <NavLink to="/menu">MENY</NavLink>
-          </button>
-          <button className="booking-btn">
-            <NavLink to="/booking">BOKA</NavLink>
-          </button>
+          <NavLink to="/menu"><button>MENY</button></NavLink>
+          <NavLink to="/booking"><button>BOKA</button></NavLink>
         </div>
         <div className="about-us-img">
-          <img src={servingImg} alt="moviescreen-dino"></img>
+          <img src={servingImg} alt="Cake"></img>
         </div>
       </section>
     </>
